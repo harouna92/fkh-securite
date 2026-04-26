@@ -7,7 +7,7 @@
   <meta name="description" content="FKH Sécurité, prestataire agréé CNAPS à Paris. Gardiennage, surveillance, sécurité événementielle, SSIAP et agents cynophiles. Devis gratuit sous 2h.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="FKH Sécurité — Protection Privée Paris">
-  <meta property="og:description" content="Agents certifiés CNAPS. Gardiennage, événementiel, SSIAP. Paris & Île-de-France.">
+  <meta property="og:description" content="Agents certifiés CNAPS. Gardiennage, événementiel, SSIAP. Intervention France métropolitaine — Devis sous 2h.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fkhsecurite.com">
 
@@ -155,22 +155,27 @@
     .nav-logo {
       display:flex; align-items:center; gap:0.8rem;
       transition: opacity var(--trans);
+      flex-shrink:0;
     }
     .nav-logo:hover { opacity: 0.85; }
     .nav-logo-img {
-      height: 44px; width: auto; max-width: 180px;
+      height: 40px; width: auto; max-width: 150px;
       display: block;
       object-fit: contain;
     }
     .nav.scrolled .nav-logo-img {
-      height: 38px;
+      height: 34px;
       transition: height var(--trans);
     }
     .nav-logo-mark { width:36px; height:36px; flex-shrink:0; }
-    .nav-links { display:flex; align-items:center; gap:2.2rem; }
+    .nav-links {
+      display:flex; align-items:center; gap:1.5rem;
+      white-space:nowrap;
+    }
     .nav-links a {
-      font-size:0.72rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase;
+      font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase;
       color:var(--grey); transition:color var(--trans); position:relative; padding-bottom:2px;
+      white-space:nowrap;
     }
     .nav-links a::after {
       content:''; position:absolute; bottom:0; left:0; width:0; height:1px;
@@ -180,11 +185,33 @@
     .nav-links a:hover::after { width:100%; }
     .nav-tel {
       display:flex; align-items:center; gap:0.5rem;
-      font-size:0.78rem; font-weight:600; letter-spacing:0.08em;
+      font-size:0.78rem; font-weight:600; letter-spacing:0.05em;
       color:var(--white); transition:color var(--trans);
+      white-space:nowrap; flex-shrink:0;
     }
     .nav-tel svg { stroke:var(--red); flex-shrink:0; }
     .nav-tel:hover { color:var(--red); }
+    .nav-cta-btn {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      background:var(--red); color:#fff;
+      padding:0.7rem 1.4rem;
+      font-size:0.7rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background var(--trans), transform var(--trans);
+      white-space:nowrap; flex-shrink:0;
+      position:relative; overflow:hidden;
+    }
+    .nav-cta-btn::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+      transform:translateX(-100%); transition:transform 0.5s;
+    }
+    .nav-cta-btn:hover::before { transform:translateX(100%); }
+    .nav-cta-btn:hover { background:var(--red-lt); transform:translateY(-1px); }
+    .nav-right {
+      display:flex; align-items:center; gap:1.2rem;
+      flex-shrink:0;
+    }
     .nav-burger {
       display:none; flex-direction:column; gap:5px;
       width:32px; padding:4px 0;
@@ -213,6 +240,222 @@
     .nav-drawer a:hover { color:var(--red); }
 
     /* ═══════════════════════════════════════════
+       SYSTÈME DE PHOTO AVEC WATERMARK FKH
+       - Wrapper avec gradient fallback (si image fail)
+       - Image en object-fit cover
+       - Watermark "FKH" discret en bas à droite (opacité 60%)
+    ═══════════════════════════════════════════ */
+    .photo-frame {
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #06080A 0%, #0C0F12 50%, #1a1015 100%);
+    }
+    .photo-frame::before {
+      content:''; position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(192,39,45,0.15), transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(184,150,46,0.08), transparent 60%);
+      pointer-events:none; z-index:1;
+    }
+    .photo-frame img {
+      position:relative; z-index:2;
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+    .photo-frame::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 60%, rgba(6,8,10,0.7) 100%);
+      pointer-events:none; z-index:3;
+    }
+    .photo-watermark {
+      position:absolute;
+      bottom:1rem; right:1rem;
+      z-index:4;
+      display:flex; align-items:center; gap:0.4rem;
+      opacity:0.6;
+      pointer-events:none;
+      mix-blend-mode: screen;
+    }
+    .photo-watermark-mark {
+      font-family: var(--font-display, 'Bebas Neue', sans-serif);
+      font-size: 1.1rem; letter-spacing:0.15em;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .photo-watermark-line {
+      width: 18px; height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .photo-watermark-sub {
+      font-size: 0.55rem; letter-spacing:0.25em;
+      color: #FFFFFF; text-transform:uppercase;
+      font-weight:500;
+    }
+
+    /* Bandeau de réassurance dans la nav */
+    .nav-trust {
+      display:inline-flex; align-items:center; gap:0.55rem;
+      padding:0.45rem 0.85rem;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(192,39,45,0.25);
+      border-radius:3px;
+      font-size:0.62rem; font-weight:600;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--grey-lt);
+      white-space:nowrap; flex-shrink:0;
+    }
+    .nav-trust .pulse-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:#22c55e; box-shadow:0 0 0 0 rgba(34,197,94,0.6);
+      animation: pulseDot 2s infinite;
+      flex-shrink:0;
+    }
+    .nav-trust .trust-sep { color:rgba(192,39,45,0.55); }
+    .nav-trust .trust-cnaps { color:var(--red); font-weight:700; }
+    @keyframes pulseDot {
+      0% { box-shadow:0 0 0 0 rgba(34,197,94,0.55); }
+      70% { box-shadow:0 0 0 8px rgba(34,197,94,0); }
+      100% { box-shadow:0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION À PROPOS
+    ═══════════════════════════════════════════ */
+    .about {
+      padding: var(--sp-xl) 0;
+      background: var(--bg2);
+      position:relative; overflow:hidden;
+    }
+    .about::before {
+      content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+      width:120%; height:1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      opacity:0.4;
+    }
+    .about::after {
+      content:''; position:absolute;
+      top:-200px; right:-150px;
+      width:500px; height:500px; border-radius:50%;
+      background: radial-gradient(circle, rgba(192,39,45,0.06), transparent 70%);
+      pointer-events:none;
+    }
+    .about-inner {
+      display:grid; grid-template-columns: 1.1fr 1fr; gap:var(--sp-xl);
+      align-items:start; position:relative; z-index:1;
+    }
+    .about-text .section-sub { max-width: none; margin-bottom: var(--sp-md); }
+    .about-paragraph {
+      font-size:1.05rem; line-height:1.8; color:var(--grey-lt);
+      margin-bottom:var(--sp-md);
+    }
+    .about-paragraph strong { color:var(--white); font-weight:600; }
+    .about-signature {
+      margin-top:var(--sp-md); padding-top:var(--sp-md);
+      border-top:1px solid var(--border);
+      display:flex; align-items:center; gap:1rem;
+    }
+    .about-signature-mark {
+      width:48px; height:48px; flex-shrink:0;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--red), #7a1a1f);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-display); font-size:1.4rem; color:#fff;
+      letter-spacing:0.05em;
+      box-shadow: 0 4px 12px rgba(192,39,45,0.3);
+    }
+    .about-signature-name {
+      font-family:var(--font-display); font-size:1.2rem; color:var(--white);
+      letter-spacing:0.06em;
+    }
+    .about-signature-role {
+      font-size:0.7rem; color:var(--grey);
+      letter-spacing:0.22em; text-transform:uppercase; margin-top:2px;
+    }
+
+    /* Colonne droite : stats + valeurs + agréments */
+    .about-side { display:flex; flex-direction:column; gap:var(--sp-md); }
+
+    .about-stats {
+      display:grid; grid-template-columns:1fr 1fr; gap:1px;
+      background:var(--border);
+      border:1px solid var(--border);
+    }
+    .about-stat {
+      background:var(--bg);
+      padding:1.6rem 1.4rem;
+      transition: background var(--trans);
+    }
+    .about-stat:hover { background:var(--bg3); }
+    .about-stat-value {
+      font-family:var(--font-display); font-size:2.6rem; color:var(--red);
+      line-height:1; letter-spacing:0.03em;
+      display:flex; align-items:baseline; gap:0.2rem;
+    }
+    .about-stat-value sup {
+      font-size:1.2rem; color:var(--grey-lt); font-weight:600;
+      letter-spacing:0;
+    }
+    .about-stat-label {
+      font-size:0.65rem; color:var(--grey);
+      letter-spacing:0.2em; text-transform:uppercase;
+      margin-top:0.6rem;
+    }
+
+    .about-values {
+      background:var(--bg); border:1px solid var(--border);
+      padding:1.6rem 1.4rem;
+    }
+    .about-values-title {
+      font-size:0.65rem; color:var(--red);
+      letter-spacing:0.28em; text-transform:uppercase;
+      margin-bottom:1rem; font-weight:700;
+    }
+    .about-values-list {
+      display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;
+    }
+    .about-value {
+      display:flex; align-items:center; gap:0.6rem;
+      font-family:var(--font-display); font-size:1.1rem; color:var(--white);
+      letter-spacing:0.04em;
+    }
+    .about-value::before {
+      content:''; width:6px; height:6px; background:var(--red);
+      transform:rotate(45deg); flex-shrink:0;
+    }
+
+    .about-cnaps {
+      background:linear-gradient(135deg, rgba(192,39,45,0.08), transparent);
+      border:1px solid var(--border-red);
+      padding:1.4rem;
+      border-left:3px solid var(--red);
+    }
+    .about-cnaps-title {
+      font-size:0.65rem; color:var(--red);
+      letter-spacing:0.28em; text-transform:uppercase; font-weight:700;
+      margin-bottom:0.8rem;
+    }
+    .about-cnaps-row {
+      display:flex; justify-content:space-between; gap:1rem;
+      padding:0.4rem 0; font-size:0.72rem;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+    .about-cnaps-row:last-child { border-bottom:none; }
+    .about-cnaps-row span:first-child {
+      color:var(--grey); letter-spacing:0.1em; text-transform:uppercase;
+      font-weight:500; flex-shrink:0;
+    }
+    .about-cnaps-row span:last-child {
+      color:var(--white); font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+      font-size:0.68rem; text-align:right; word-break:break-all;
+    }
+    .about-cnaps-legal {
+      margin-top:0.8rem; padding-top:0.8rem;
+      border-top:1px solid rgba(255,255,255,0.05);
+      font-size:0.62rem; color:var(--grey); line-height:1.5; font-style:italic;
+    }
+
+    /* ═══════════════════════════════════════════
        7. HERO — version améliorée avec image de fond
     ═══════════════════════════════════════════ */
     .hero {
@@ -238,30 +481,11 @@
         linear-gradient(90deg, rgba(192,39,45,0.04) 1px, transparent 1px);
       background-size:64px 64px;
     }
-    .hero-slash {
-      position:absolute; top:-5%; right:28%; width:2px; height:120%;
-      background:linear-gradient(180deg,transparent,var(--red) 30%,var(--red) 70%,transparent);
-      transform:rotate(-12deg); opacity:0.5; z-index:2;
-      animation:slashReveal 1.2s ease 0.5s both;
-    }
-    .hero-slash-2 {
-      position:absolute; top:-5%; right:29.5%; width:1px; height:120%;
-      background:linear-gradient(180deg,transparent,var(--red) 40%,var(--red) 60%,transparent);
-      transform:rotate(-12deg); opacity:0.2; z-index:2;
-      animation:slashReveal 1.2s ease 0.7s both;
-    }
     .hero-glow {
       position:absolute; width:800px; height:800px; border-radius:50%;
       background:radial-gradient(circle,rgba(192,39,45,0.12),transparent 70%);
       top:50%; left:15%; transform:translate(-50%,-50%);
       z-index:2; pointer-events:none;
-    }
-    .hero-bg-text {
-      position:absolute; right:-2%; bottom:-8%;
-      font-family:var(--font-display); font-size:clamp(180px,22vw,320px);
-      color:transparent; -webkit-text-stroke:1px rgba(242,239,233,0.05);
-      letter-spacing:-0.02em; z-index:1; pointer-events:none; user-select:none;
-      line-height:1;
     }
     .hero-content {
       position:relative; z-index:10;
@@ -451,20 +675,61 @@
 
     /* CTA card spéciale (sans image) */
     .service-card-cta {
-      background:var(--red);
+      background: linear-gradient(135deg, #C0272D 0%, #8a1c20 100%);
       padding:var(--sp-lg) var(--sp-md);
       display:flex; flex-direction:column; justify-content:center;
+      position:relative; overflow:hidden;
+      min-height: 320px;
     }
     .service-card-cta::before { display:none; }
-    .service-card-cta:hover { background:var(--red-lt); }
+    .service-card-cta:hover { background:linear-gradient(135deg, #d12d34 0%, #9a1f24 100%); }
+    .cta-card-bg {
+      position:absolute; inset:0; opacity:0.5; pointer-events:none;
+    }
+    .cta-card-bg svg { width:100%; height:100%; }
+    .cta-card-content {
+      position:relative; z-index:2;
+      display:flex; flex-direction:column; gap:1rem;
+      height:100%; justify-content:center;
+    }
+    .cta-card-label {
+      display:inline-block; align-self:flex-start;
+      padding:0.3rem 0.7rem;
+      background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.3);
+      font-size:0.62rem; letter-spacing:0.25em;
+      text-transform:uppercase; font-weight:700;
+      color:#fff; margin-bottom: 0.4rem;
+    }
     .service-card-cta h3 {
-      font-family:var(--font-display); font-size:2rem;
-      letter-spacing:0.05em; line-height:1;
+      font-family:var(--font-display); font-size:2.4rem;
+      letter-spacing:0.04em; line-height:0.95;
       margin-bottom:var(--sp-sm); color:#fff;
     }
     .service-card-cta p {
-      font-size:0.9rem; color:rgba(255,255,255,0.85);
-      line-height:1.7; margin-bottom:var(--sp-md);
+      font-size:0.92rem; color:rgba(255,255,255,0.92);
+      line-height:1.6; margin-bottom:var(--sp-md);
+    }
+    .btn-cta-card {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      align-self:flex-start;
+      background:#fff; color:var(--red);
+      padding:0.85rem 1.6rem;
+      font-size:0.72rem; font-weight:700;
+      letter-spacing:0.22em; text-transform:uppercase;
+      text-decoration:none; transition: all var(--trans);
+      border:none; cursor:pointer;
+    }
+    .btn-cta-card:hover { transform:translateX(3px); box-shadow:0 4px 16px rgba(0,0,0,0.3); }
+
+    /* SVG services personnalisés */
+    .service-image-svg {
+      background: #0C0F12;
+      position:relative;
+    }
+    .service-svg {
+      width:100%; height:100%;
+      display:block;
     }
 
     /* ═══════════════════════════════════════════
@@ -525,6 +790,11 @@
       filter: grayscale(30%) contrast(1.1);
     }
     .why-visual-img:hover img { transform:scale(1.05); filter:grayscale(0%); }
+    .why-svg {
+      width:100%; height:100%; display:block;
+      transition: transform 0.6s ease;
+    }
+    .why-visual-img:hover .why-svg { transform: scale(1.03); }
     .why-visual-img:nth-child(1) { grid-row: 1 / 3; }
     .why-visual-img::after {
       content:''; position:absolute; inset:0;
@@ -591,40 +861,67 @@
     .testimonials {
       padding:var(--sp-xl) 0;
       background:var(--bg2);
+      position:relative; overflow:hidden;
     }
-    .testimonials-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:var(--sp-md);
+    .testimonials::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      opacity:0.4;
+    }
+    .commitments-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:var(--sp-md);
       margin-top:var(--sp-lg);
     }
-    .testi-card {
+    .commitment-card {
       background:var(--bg3); padding:var(--sp-lg);
       border:1px solid var(--border);
-      border-radius:var(--radius); position:relative;
-      transition:border-color var(--trans), transform var(--trans), box-shadow var(--trans);
+      position:relative; overflow:hidden;
+      transition:all var(--trans);
     }
-    .testi-card:hover {
+    .commitment-card::before {
+      content:''; position:absolute; top:0; left:0; width:3px; height:0;
+      background:var(--red); transition:height 0.4s ease;
+    }
+    .commitment-card:hover {
       border-color:var(--border-red);
-      transform:translateY(-4px); box-shadow:var(--shadow);
+      transform:translateY(-4px);
+      background: var(--bg2);
     }
-    .testi-stars { display:flex; gap:3px; margin-bottom:var(--sp-md); }
-    .testi-stars svg { width:14px; height:14px; fill:var(--gold); stroke:none; }
-    .testi-quote {
-      font-size:0.95rem; color:var(--grey-lt); line-height:1.8;
-      font-style:italic; margin-bottom:var(--sp-md);
+    .commitment-card:hover::before { height:100%; }
+    .commitment-num {
+      position:absolute; top:1.2rem; right:1.4rem;
+      font-family:var(--font-display);
+      font-size:2.6rem; color:rgba(192,39,45,0.18);
+      letter-spacing:0.04em; line-height:1; font-weight:400;
     }
-    .testi-author {
-      display:flex; align-items:center; gap:var(--sp-sm);
+    .commitment-icon {
+      width:48px; height:48px; margin-bottom:var(--sp-md);
+      display:flex; align-items:center; justify-content:center;
+      background:var(--red-dim);
+      border:1px solid var(--border-red);
+      color:var(--red);
+    }
+    .commitment-icon svg { width:22px; height:22px; }
+    .commitment-title {
+      font-family:var(--font-display); font-size:1.4rem;
+      letter-spacing:0.04em; line-height:1.15;
+      color:var(--white); margin-bottom:0.7rem;
+    }
+    .commitment-desc {
+      font-size:0.88rem; color:var(--grey-lt); line-height:1.7;
+      margin-bottom:var(--sp-md);
+    }
+    .commitment-meta {
+      display:flex; flex-wrap:wrap; gap:0.4rem;
       padding-top:var(--sp-sm); border-top:1px solid var(--border);
     }
-    .testi-avatar {
-      width:40px; height:40px; border-radius:50%;
-      background:var(--red-dim); border:1px solid var(--border-red);
-      display:flex; align-items:center; justify-content:center;
-      font-family:var(--font-display); font-size:1rem; color:var(--red);
-      flex-shrink:0;
+    .commitment-tag {
+      font-size:0.65rem; color:var(--grey);
+      letter-spacing:0.15em; text-transform:uppercase; font-weight:600;
+      padding:0.3rem 0.6rem; border:1px solid var(--border);
+      background:var(--bg);
     }
-    .testi-name { font-size:0.85rem; font-weight:600; }
-    .testi-role { font-size:0.72rem; color:var(--grey); margin-top:1px; }
 
     /* ═══════════════════════════════════════════
        13. ZONES
@@ -637,18 +934,44 @@
       display:grid; grid-template-columns:1fr 1.4fr; gap:var(--sp-xl);
       align-items:start; margin-top:var(--sp-lg);
     }
-    .zones-list { display:grid; gap:0.4rem; }
+    .zones-list { display:grid; gap:var(--sp-md); }
+    .zone-region {
+      padding:1rem 0;
+      border-top:1px solid var(--border);
+    }
+    .zone-region:first-child { border-top:none; padding-top:0; }
+    .zone-region-title {
+      font-family:var(--font-display); font-size:1.1rem;
+      color:var(--red); letter-spacing:0.08em;
+      margin-bottom:0.6rem;
+    }
     .zone-item {
       display:flex; align-items:center; gap:var(--sp-sm);
-      padding:0.8rem var(--sp-sm);
+      padding:0.6rem var(--sp-sm);
       border-bottom:1px solid var(--border);
-      font-size:0.88rem; color:var(--grey-lt);
+      font-size:0.86rem; color:var(--grey-lt);
       transition:all var(--trans);
     }
+    .zone-region .zone-item:last-child { border-bottom:none; }
     .zone-item:hover { color:var(--white); padding-left:var(--sp-md); }
     .zone-item::before {
       content:''; width:6px; height:6px; border-radius:50%;
       background:var(--red); flex-shrink:0;
+    }
+    .zones-cta {
+      margin-top:var(--sp-md);
+      padding:1rem var(--sp-md);
+      background:linear-gradient(135deg, rgba(192,39,45,0.08), transparent);
+      border:1px solid var(--border-red); border-left:3px solid var(--red);
+    }
+    .zones-cta-link {
+      display:flex; flex-direction:column; gap:0.3rem;
+      color:var(--white); text-decoration:none;
+      font-size:0.92rem; font-weight:500;
+    }
+    .zones-cta-arrow {
+      font-size:0.72rem; color:var(--red);
+      letter-spacing:0.18em; text-transform:uppercase; font-weight:700;
     }
     .zones-map {
       position:relative;
@@ -876,13 +1199,13 @@
        18. ANIMATIONS
     ═══════════════════════════════════════════ */
     .reveal {
-      opacity:0; transform:translateY(28px);
-      transition:opacity 0.7s ease, transform 0.7s ease;
+      opacity:0; transform:translateY(20px);
+      transition:opacity 0.5s ease, transform 0.5s ease;
     }
     .reveal.is-visible { opacity:1; transform:none; }
     .stagger-children > * {
-      opacity:0; transform:translateY(20px);
-      transition:opacity 0.6s ease, transform 0.6s ease;
+      opacity:0; transform:translateY(15px);
+      transition:opacity 0.45s ease, transform 0.45s ease;
     }
     .stagger-children.is-visible > * { opacity:1; transform:none; }
     @keyframes fadeUp {
@@ -919,16 +1242,22 @@
       .hero-image-bg { background-attachment: scroll; }
       .cta-banner { background-attachment: scroll; }
     }
-    @media (max-width:768px) {
-      :root { --sp-xl:5rem; --sp-lg:3rem; }
-      .nav-links, .nav-tel { display:none; }
+    @media (max-width:1100px) {
+      .nav-links, .nav-tel, .nav-trust { display:none; }
       .nav-burger { display:flex; }
       .nav-drawer { display:flex; }
+    }
+    @media (max-width:900px) {
+      .about-inner { grid-template-columns:1fr; gap:var(--sp-lg); }
+    }
+    @media (max-width:768px) {
+      :root { --sp-xl:5rem; --sp-lg:3rem; }
+      .nav-cta-btn { display:none; }
       .hero-headline { font-size:clamp(3rem,15vw,5rem); }
       .process-steps { grid-template-columns:1fr 1fr; }
       .process-step::after { display:none; }
       .services-grid { grid-template-columns:1fr; }
-      .testimonials-grid { grid-template-columns:1fr; }
+      .commitments-grid { grid-template-columns:1fr; }
       .cta-banner-inner { flex-direction:column; text-align:center; }
       .form-row { grid-template-columns:1fr; }
       .footer-grid { grid-template-columns:1fr; }
@@ -936,6 +1265,10 @@
       .why-visual { grid-template-columns:1fr; grid-template-rows:200px 200px 200px; }
       .why-visual-img:nth-child(1) { grid-row:1; }
       .service-image { height:180px; }
+      .about-stats { grid-template-columns:1fr; }
+      .about-values-list { grid-template-columns:1fr; }
+      .about-cnaps-row { flex-direction:column; gap:0.2rem; }
+      .about-cnaps-row span:last-child { text-align:left; }
     }
     @media (max-width:480px) {
       .process-steps { grid-template-columns:1fr; }
@@ -963,17 +1296,31 @@
 
     <ul class="nav-links" role="list">
       <li><a href="#services">Services</a></li>
-      <li><a href="#why">Pourquoi nous</a></li>
-      <li><a href="#zones">Zones</a></li>
-      <li><a href="#recrutement">Recrutement</a></li>
+      <li><a href="#why">Références</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#recrutement">Carrières</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
-    <a href="tel:+33465842584" class="nav-tel" aria-label="Appeler FKH Sécurité">
+    <div class="nav-trust" aria-label="Entreprise agréée CNAPS, disponible 24 heures sur 24, 7 jours sur 7">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span class="trust-cnaps">CNAPS AUT-021</span>
+      <span class="trust-sep">·</span>
+      <span>24H/24</span>
+      <span class="trust-sep">·</span>
+      <span>7J/7</span>
+    </div>
+
+    <a href="tel:+33465842584" class="nav-tel" aria-label="Appeler FKH Sécurité au 04 65 84 25 84">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 1h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
       </svg>
       04 65 84 25 84
+    </a>
+
+    <a href="#contact" class="nav-cta-btn" aria-label="Demander un devis, réponse sous 2 heures">
+      Devis sous 2h
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
     <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Ouvrir le menu" aria-controls="navDrawer">
@@ -984,9 +1331,9 @@
 
 <div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Menu mobile">
   <a href="#services">Services</a>
-  <a href="#why">Pourquoi nous</a>
-  <a href="#zones">Zones</a>
-  <a href="#recrutement">Recrutement</a>
+  <a href="#why">Références</a>
+  <a href="#about">À propos</a>
+  <a href="#recrutement">Carrières</a>
   <a href="#contact">Contact</a>
   <a href="tel:+33465842584" style="color:var(--red);">04 65 84 25 84</a>
 </div>
@@ -997,16 +1344,13 @@
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-image-bg" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-slash" aria-hidden="true"></div>
-  <div class="hero-slash-2" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-bg-text" aria-hidden="true">FKH</div>
 
   <div class="container hero-content">
     <div class="hero-inner">
       <div class="hero-badge">
         <span class="hero-badge-line"></span>
-        <span class="hero-badge-text">Agréé CNAPS · Paris &amp; Île-de-France · 24h/24</span>
+        <span class="hero-badge-text">Agréé CNAPS · Intervention France métropolitaine · 24h/24</span>
       </div>
 
       <h1 class="hero-headline" id="hero-title">
@@ -1016,13 +1360,14 @@
       </h1>
 
       <p class="hero-sub">
-        FKH Sécurité déploie des agents certifiés pour protéger vos sites, vos événements
-        et vos personnes. Réactivité garantie, disponibilité 24h/24, 7j/7.
+        FKH Sécurité déploie des agents certifiés CNAPS pour protéger vos sites,
+        vos événements et vos personnes. Réactivité garantie, disponibilité
+        24h/24, 7j/7, partout en France.
       </p>
 
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">
-          Demander un devis gratuit
+          Devis sous 2h
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#services" class="btn-ghost">Découvrir nos services</a>
@@ -1030,20 +1375,20 @@
 
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-number" data-target="4">0</div>
-          <div class="hero-stat-label">Ans d'expérience</div>
+          <div class="hero-stat-number" data-target="5">0</div>
+          <div class="hero-stat-label">Années d'activité</div>
         </div>
         <div>
-          <div class="hero-stat-number" data-target="500">0</div>
-          <div class="hero-stat-label">Missions réalisées</div>
+          <div class="hero-stat-number">100%</div>
+          <div class="hero-stat-label">Agents certifiés CNAPS</div>
         </div>
         <div>
           <div class="hero-stat-number">24/7</div>
           <div class="hero-stat-label">Disponibilité</div>
         </div>
         <div>
-          <div class="hero-stat-number">100%</div>
-          <div class="hero-stat-label">Agents certifiés CNAPS</div>
+          <div class="hero-stat-number">2h</div>
+          <div class="hero-stat-label">Pour répondre à un devis</div>
         </div>
       </div>
     </div>
@@ -1088,6 +1433,112 @@
   </div>
 </div>
 
+<!-- ═══════════ À PROPOS — entreprise, dirigeant, valeurs, agréments ═══════════ -->
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center; max-width:760px; margin-left:auto; margin-right:auto;">
+      <span class="label">L'entreprise</span>
+      <h2 class="section-title" id="about-title">Une expertise reconnue<br>au service de votre sécurité</h2>
+    </div>
+
+    <div class="about-inner">
+
+      <!-- Colonne gauche : présentation -->
+      <div class="about-text reveal">
+        <p class="about-paragraph">
+          Fondée en 2020, <strong>FKH SÉCURITÉ</strong> est une entreprise de
+          sécurité privée intervenant sur l'ensemble du <strong>territoire français
+          métropolitain</strong>. Notre vocation : protéger les biens et les personnes
+          avec rigueur, en mobilisant des agents qualifiés, des procédures éprouvées
+          et une disponibilité totale.
+        </p>
+        <p class="about-paragraph">
+          Implantée à <strong>Paris (15<sup>e</sup>)</strong>, notre structure répond
+          aux besoins des collectivités, entreprises industrielles, acteurs de
+          l'événementiel et du retail. Chaque mission est conduite dans le strict
+          respect du cadre légal défini par le <strong>CNAPS</strong> et de la
+          <strong>convention collective IDCC 1351</strong>.
+        </p>
+        <p class="about-paragraph">
+          Notre engagement : une <strong>réponse sous 2 heures</strong> à toute
+          demande de devis, un déploiement opérationnel rapide, et un suivi
+          rigoureux de chaque prestation — quelle que soit sa durée.
+        </p>
+
+        <div class="about-signature">
+          <div class="about-signature-mark" aria-hidden="true">MD</div>
+          <div>
+            <div class="about-signature-name">Moussa Diane</div>
+            <div class="about-signature-role">Président · FKH Sécurité</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite : stats + valeurs + agréments -->
+      <aside class="about-side reveal">
+
+        <!-- Chiffres clés -->
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-value">5<sup>ans</sup></div>
+            <div class="about-stat-label">d'activité</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-value">100<sup>%</sup></div>
+            <div class="about-stat-label">Agents certifiés CNAPS</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-value">24<sup>/7</sup></div>
+            <div class="about-stat-label">Disponibilité totale</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-value">2<sup>h</sup></div>
+            <div class="about-stat-label">pour répondre à un devis</div>
+          </div>
+        </div>
+
+        <!-- Valeurs -->
+        <div class="about-values">
+          <div class="about-values-title">Nos valeurs</div>
+          <div class="about-values-list">
+            <div class="about-value">Rigueur</div>
+            <div class="about-value">Réactivité</div>
+            <div class="about-value">Discrétion</div>
+            <div class="about-value">Engagement</div>
+          </div>
+        </div>
+
+        <!-- Agréments CNAPS -->
+        <div class="about-cnaps">
+          <div class="about-cnaps-title">Agréments &amp; conformité</div>
+          <div class="about-cnaps-row">
+            <span>Autorisation</span>
+            <span>AUT-021-2123-11-08-20240796361</span>
+          </div>
+          <div class="about-cnaps-row">
+            <span>Agrément dirigeant</span>
+            <span>AGD-093-2028-08-29-20230440794</span>
+          </div>
+          <div class="about-cnaps-row">
+            <span>Convention</span>
+            <span>IDCC 1351 — Sécurité privée</span>
+          </div>
+          <div class="about-cnaps-row">
+            <span>Cadre légal</span>
+            <span>Loi n°83-629 du 12/07/1983</span>
+          </div>
+          <p class="about-cnaps-legal">
+            Art. L612-14 CSI : L'autorisation administrative préalable ne confère
+            aucun caractère officiel à l'entreprise et n'engage en aucune manière
+            la responsabilité des pouvoirs publics.
+          </p>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ SERVICES avec images ═══════════ -->
 <section class="services" id="services" aria-labelledby="services-title">
   <div class="container">
@@ -1103,9 +1554,33 @@
     <div class="services-grid stagger-children">
 
       <article class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Surveillance et gardiennage de site industriel" loading="lazy">
+        <div class="service-image service-image-svg">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" class="service-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bg-svc1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+              <radialGradient id="glow-svc1" cx="30%" cy="30%">
+                <stop offset="0%" stop-color="#C0272D" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#C0272D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="200" height="140" fill="url(#bg-svc1)"/>
+            <rect width="200" height="140" fill="url(#glow-svc1)"/>
+            <g transform="translate(100, 70)">
+              <path d="M 0,-32 L 24,-22 L 24,2 Q 24,22 0,32 Q -24,22 -24,2 L -24,-22 Z"
+                    fill="none" stroke="#C0272D" stroke-width="2.5" opacity="0.9"/>
+              <circle cx="0" cy="-2" r="11" fill="none" stroke="#F2EFE9" stroke-width="2"/>
+              <circle cx="0" cy="-2" r="4" fill="#C0272D"/>
+              <path d="M -7,8 Q 0,14 7,8" fill="none" stroke="#F2EFE9" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <text x="20" y="125" fill="#8A909A" font-family="Arial Black, sans-serif" font-size="9" letter-spacing="3">SURVEILLANCE</text>
+          </svg>
           <span class="service-image-num">01</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
         <div class="service-content">
           <div class="service-icon" aria-hidden="true">
@@ -1126,13 +1601,36 @@
       </article>
 
       <article class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent SSIAP en formation prévention incendie" loading="lazy">
+        <div class="service-image service-image-svg">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" class="service-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bg-svc2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+              <radialGradient id="glow-svc2" cx="50%" cy="80%">
+                <stop offset="0%" stop-color="#C0272D" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#C0272D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="200" height="140" fill="url(#bg-svc2)"/>
+            <rect width="200" height="140" fill="url(#glow-svc2)"/>
+            <g transform="translate(100, 75)">
+              <path d="M 0,-32 Q -10,-18 -8,-6 Q -16,-2 -14,12 Q -8,28 0,30 Q 8,28 14,12 Q 16,-2 8,-6 Q 10,-18 0,-32 Z"
+                    fill="#C0272D" opacity="0.85"/>
+              <path d="M 0,-20 Q -4,-10 -2,-2 Q -8,4 -6,14 Q -2,22 0,22 Q 2,22 6,14 Q 8,4 2,-2 Q 4,-10 0,-20 Z"
+                    fill="#F2EFE9" opacity="0.4"/>
+            </g>
+            <text x="20" y="125" fill="#8A909A" font-family="Arial Black, sans-serif" font-size="9" letter-spacing="3">SSIAP</text>
+          </svg>
           <span class="service-image-num">02</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
         <div class="service-content">
           <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2l-1 4 4-1-3 4 5 1-4 3 4 4-5 1 3 4-4-1 1 4-3-3-3 3 1-4-4 1 3-4-5-1 4-3-4-4 5-1-3-4 4 1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2 Q 9 8 11 12 Q 7 14 8 19 Q 10 22 12 22 Q 14 22 16 19 Q 17 14 13 12 Q 15 8 12 2 Z"/></svg>
           </div>
           <h3 class="service-title">Agent SSIAP</h3>
           <p class="service-desc">
@@ -1149,9 +1647,38 @@
       </article>
 
       <article class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sécurité événementielle concert et salon" loading="lazy">
+        <div class="service-image service-image-svg">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" class="service-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bg-svc3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="140" fill="url(#bg-svc3)"/>
+            <g opacity="0.5">
+              <circle cx="40" cy="100" r="6" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="60" cy="105" r="5" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="80" cy="100" r="6" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="100" cy="106" r="5" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="120" cy="100" r="6" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="140" cy="105" r="5" fill="#F2EFE9" opacity="0.3"/>
+              <circle cx="160" cy="100" r="6" fill="#F2EFE9" opacity="0.3"/>
+              <line x1="30" y1="115" x2="170" y2="115" stroke="#F2EFE9" opacity="0.2"/>
+            </g>
+            <g transform="translate(100, 55)">
+              <rect x="-26" y="-20" width="52" height="36" rx="3" fill="none" stroke="#C0272D" stroke-width="2.5"/>
+              <line x1="-26" y1="-8" x2="26" y2="-8" stroke="#C0272D" stroke-width="2.5"/>
+              <text x="0" y="-12" text-anchor="middle" fill="#C0272D" font-family="Arial Black, sans-serif" font-size="6" letter-spacing="1">VIP</text>
+              <circle cx="0" cy="6" r="6" fill="#F2EFE9"/>
+              <text x="0" y="9" text-anchor="middle" fill="#0C0F12" font-family="Arial Black, sans-serif" font-size="7">★</text>
+            </g>
+            <text x="20" y="125" fill="#8A909A" font-family="Arial Black, sans-serif" font-size="9" letter-spacing="3">ÉVÉNEMENTIEL</text>
+          </svg>
           <span class="service-image-num">03</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
         <div class="service-content">
           <div class="service-icon" aria-hidden="true">
@@ -1172,9 +1699,40 @@
       </article>
 
       <article class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Patrouille mobile sécurité véhicule" loading="lazy">
+        <div class="service-image service-image-svg">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" class="service-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bg-svc4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="140" fill="url(#bg-svc4)"/>
+            <g opacity="0.3">
+              <line x1="0" y1="115" x2="200" y2="115" stroke="#F2EFE9" stroke-width="0.5" stroke-dasharray="6 6"/>
+              <line x1="0" y1="125" x2="200" y2="125" stroke="#F2EFE9" stroke-width="0.5" stroke-dasharray="6 6"/>
+            </g>
+            <g transform="translate(100, 70)">
+              <rect x="-32" y="-12" width="64" height="20" rx="3" fill="#C0272D"/>
+              <rect x="-26" y="-22" width="52" height="14" rx="2" fill="#0C0F12" stroke="#C0272D" stroke-width="1.5"/>
+              <circle cx="-22" cy="14" r="6" fill="#F2EFE9"/>
+              <circle cx="-22" cy="14" r="3" fill="#0C0F12"/>
+              <circle cx="22" cy="14" r="6" fill="#F2EFE9"/>
+              <circle cx="22" cy="14" r="3" fill="#0C0F12"/>
+              <rect x="-30" y="-2" width="6" height="6" fill="#F2EFE9" opacity="0.6"/>
+              <rect x="24" y="-2" width="6" height="6" fill="#F2EFE9" opacity="0.6"/>
+              <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-size="6" letter-spacing="1">SECURITY</text>
+            </g>
+            <g transform="translate(35, 35)" opacity="0.6">
+              <circle r="10" fill="none" stroke="#C0272D" stroke-width="1.5"/>
+              <circle r="3" fill="#C0272D"/>
+            </g>
+            <text x="20" y="20" fill="#C0272D" font-family="Arial Black, sans-serif" font-size="7" letter-spacing="2">PATROUILLE</text>
+          </svg>
           <span class="service-image-num">04</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
         <div class="service-content">
           <div class="service-icon" aria-hidden="true">
@@ -1195,9 +1753,37 @@
       </article>
 
       <article class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maître chien et berger allemand surveillance cynophile" loading="lazy">
+        <div class="service-image service-image-svg">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" class="service-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bg-svc5" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="140" fill="url(#bg-svc5)"/>
+            <g transform="translate(115, 75)">
+              <ellipse cx="0" cy="20" rx="35" ry="6" fill="#F2EFE9" opacity="0.1"/>
+              <path d="M -25,-15 L -28,-25 L -22,-22 L -18,-15 Q -16,-5 -16,5 L -16,15 L -22,15 Q -25,12 -25,5 Z" fill="#C0272D" opacity="0.85"/>
+              <path d="M -25,-25 L -28,-32 L -22,-30 Z M -22,-30 L -18,-32 L -18,-25 Z" fill="#C0272D" opacity="0.85"/>
+              <path d="M 25,-12 Q 30,-15 32,-8 Q 34,0 30,8 Q 26,15 18,15 L -16,15 Q -8,5 -2,-2 Q 8,-12 25,-12 Z" fill="#C0272D" opacity="0.85"/>
+              <circle cx="22" cy="-5" r="2" fill="#F2EFE9"/>
+              <path d="M 30,-10 Q 33,-8 30,-5" fill="none" stroke="#F2EFE9" stroke-width="1" opacity="0.6"/>
+              <line x1="-22" y1="15" x2="-22" y2="22" stroke="#C0272D" stroke-width="3"/>
+              <line x1="-12" y1="15" x2="-12" y2="22" stroke="#C0272D" stroke-width="3"/>
+              <line x1="14" y1="15" x2="14" y2="22" stroke="#C0272D" stroke-width="3"/>
+              <line x1="22" y1="15" x2="22" y2="22" stroke="#C0272D" stroke-width="3"/>
+            </g>
+            <g transform="translate(40, 50)" opacity="0.6">
+              <path d="M -8,-8 Q 0,-12 8,-8 L 8,4 Q 0,8 -8,4 Z" fill="none" stroke="#C0272D" stroke-width="1.5"/>
+              <text x="0" y="2" text-anchor="middle" fill="#C0272D" font-family="Arial Black, sans-serif" font-size="6">K-9</text>
+            </g>
+            <text x="20" y="125" fill="#8A909A" font-family="Arial Black, sans-serif" font-size="9" letter-spacing="3">CYNOPHILE</text>
+          </svg>
           <span class="service-image-num">05</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
         <div class="service-content">
           <div class="service-icon" aria-hidden="true">
@@ -1218,14 +1804,28 @@
       </article>
 
       <article class="service-card service-card-cta">
-        <h3>Votre besoin<br>est unique ?</h3>
-        <p>
-          Nous étudions chaque mission sur mesure. Contactez-nous pour un audit
-          de sécurité gratuit et un devis personnalisé sous 2h.
-        </p>
-        <a href="#contact" class="btn btn-primary" style="background:#fff; color:var(--red); align-self:flex-start;">
-          Audit gratuit →
-        </a>
+        <div class="cta-card-bg" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="cta-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="200" height="200" fill="url(#cta-grid)"/>
+          </svg>
+        </div>
+        <div class="cta-card-content">
+          <span class="cta-card-label">Sur mesure</span>
+          <h3>Votre besoin<br>est unique ?</h3>
+          <p>
+            Nous étudions chaque mission sur mesure. Contactez-nous pour un audit
+            de sécurité gratuit et un devis personnalisé sous 2h.
+          </p>
+          <a href="#contact" class="btn-cta-card">
+            Audit gratuit
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </article>
 
     </div>
@@ -1288,20 +1888,117 @@
 
       <div class="why-visual reveal">
         <div class="why-visual-img">
-          <img src="https://images.unsplash.com/photo-1566024287286-457247b70310?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Équipe agents de sécurité professionnels">
+          <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" class="why-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="why-bg-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#06080A"/>
+                <stop offset="50%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+              <radialGradient id="why-glow-1" cx="50%" cy="50%">
+                <stop offset="0%" stop-color="#C0272D" stop-opacity="0.3"/>
+                <stop offset="60%" stop-color="#C0272D" stop-opacity="0.05"/>
+                <stop offset="100%" stop-color="#C0272D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="600" height="600" fill="url(#why-bg-1)"/>
+            <rect width="600" height="600" fill="url(#why-glow-1)"/>
+            <g opacity="0.15">
+              <line x1="0" y1="100" x2="600" y2="100" stroke="#F2EFE9" stroke-width="0.5"/>
+              <line x1="0" y1="200" x2="600" y2="200" stroke="#F2EFE9" stroke-width="0.5"/>
+              <line x1="0" y1="300" x2="600" y2="300" stroke="#F2EFE9" stroke-width="0.5"/>
+              <line x1="0" y1="400" x2="600" y2="400" stroke="#F2EFE9" stroke-width="0.5"/>
+              <line x1="0" y1="500" x2="600" y2="500" stroke="#F2EFE9" stroke-width="0.5"/>
+            </g>
+            <g transform="translate(300, 280)">
+              <path d="M 0,-110 L 80,-75 L 80,5 Q 80,75 0,110 Q -80,75 -80,5 L -80,-75 Z"
+                    fill="none" stroke="#C0272D" stroke-width="4" opacity="0.95"/>
+              <path d="M 0,-90 L 65,-60 L 65,0 Q 65,55 0,85 Q -65,55 -65,0 L -65,-60 Z"
+                    fill="rgba(192,39,45,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+              <g transform="translate(0, -10)">
+                <text x="0" y="0" text-anchor="middle" fill="#F2EFE9" font-family="Arial Black, sans-serif" font-size="38" letter-spacing="3" font-weight="900">CNAPS</text>
+                <line x1="-50" y1="15" x2="50" y2="15" stroke="#C0272D" stroke-width="2"/>
+                <text x="0" y="40" text-anchor="middle" fill="#C0272D" font-family="Arial, sans-serif" font-size="13" letter-spacing="4" font-weight="700">AGRÉÉ</text>
+              </g>
+            </g>
+            <text x="40" y="540" fill="#8A909A" font-family="Arial Black, sans-serif" font-size="14" letter-spacing="6">100% AGENTS CERTIFIÉS</text>
+            <text x="40" y="565" fill="#C0272D" font-family="Arial, sans-serif" font-size="11" letter-spacing="3">AUT-021-2123-11-08-20240796361</text>
+          </svg>
           <span class="why-visual-tag">Équipe agréée</span>
           <div class="why-visual-stat">
             <div class="why-visual-stat-num">CNAPS</div>
             <div class="why-visual-stat-label">Tous nos agents certifiés</div>
           </div>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
+
         <div class="why-visual-img">
-          <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Surveillance vidéo et contrôle d'accès">
+          <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" class="why-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="why-bg-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="400" fill="url(#why-bg-2)"/>
+            <g transform="translate(300, 200)">
+              <rect x="-150" y="-90" width="300" height="180" rx="8" fill="#06080A" stroke="#C0272D" stroke-width="2"/>
+              <rect x="-140" y="-80" width="135" height="75" rx="2" fill="#1a1015"/>
+              <rect x="5" y="-80" width="135" height="75" rx="2" fill="#1a1015"/>
+              <rect x="-140" y="5" width="135" height="75" rx="2" fill="#1a1015"/>
+              <rect x="5" y="5" width="135" height="75" rx="2" fill="#1a1015"/>
+              <g opacity="0.6">
+                <circle cx="-72" cy="-42" r="8" fill="none" stroke="#C0272D" stroke-width="1.5"/>
+                <circle cx="-72" cy="-42" r="3" fill="#C0272D"/>
+                <circle cx="73" cy="-42" r="8" fill="none" stroke="#F2EFE9" stroke-width="1.5"/>
+                <circle cx="73" cy="-42" r="3" fill="#F2EFE9"/>
+                <rect x="-100" y="35" width="60" height="20" fill="rgba(192,39,45,0.4)"/>
+                <rect x="40" y="35" width="60" height="20" fill="rgba(242,239,233,0.2)"/>
+              </g>
+              <circle cx="0" cy="0" r="4" fill="#C0272D"/>
+              <text x="0" y="105" text-anchor="middle" fill="#F2EFE9" font-family="Arial Black, sans-serif" font-size="13" letter-spacing="6">SURVEILLANCE 24/7</text>
+            </g>
+          </svg>
           <span class="why-visual-tag">Surveillance</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
+
         <div class="why-visual-img">
-          <img src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Briefing d'équipe de sécurité">
+          <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" class="why-svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="why-bg-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0C0F12"/>
+                <stop offset="100%" stop-color="#1a1015"/>
+              </linearGradient>
+              <radialGradient id="why-glow-3" cx="50%" cy="50%">
+                <stop offset="0%" stop-color="#C0272D" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#C0272D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="600" height="400" fill="url(#why-bg-3)"/>
+            <rect width="600" height="400" fill="url(#why-glow-3)"/>
+            <g transform="translate(300, 190)">
+              <circle cx="0" cy="0" r="100" fill="none" stroke="#C0272D" stroke-width="3"/>
+              <circle cx="0" cy="0" r="92" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <line x1="0" y1="-90" x2="0" y2="-78" stroke="#F2EFE9" stroke-width="3" stroke-linecap="round"/>
+              <line x1="0" y1="78" x2="0" y2="90" stroke="#F2EFE9" stroke-width="2"/>
+              <line x1="-90" y1="0" x2="-78" y2="0" stroke="#F2EFE9" stroke-width="2"/>
+              <line x1="78" y1="0" x2="90" y2="0" stroke="#F2EFE9" stroke-width="2"/>
+              <line x1="0" y1="0" x2="0" y2="-50" stroke="#F2EFE9" stroke-width="3" stroke-linecap="round"/>
+              <line x1="0" y1="0" x2="40" y2="0" stroke="#C0272D" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="0" cy="0" r="6" fill="#C0272D"/>
+              <text x="0" y="135" text-anchor="middle" fill="#F2EFE9" font-family="Arial Black, sans-serif" font-size="42" letter-spacing="4">2H</text>
+              <text x="0" y="155" text-anchor="middle" fill="#C0272D" font-family="Arial, sans-serif" font-size="11" letter-spacing="4" font-weight="700">RÉPONSE GARANTIE</text>
+            </g>
+          </svg>
           <span class="why-visual-tag">Réactivité 2h</span>
+          <div class="photo-watermark">
+            <span class="photo-watermark-mark">FKH</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1345,70 +2042,141 @@
 </section>
 
 <!-- TÉMOIGNAGES -->
+<!-- ═══════════ ENGAGEMENTS DE SERVICE — remplace les témoignages fictifs ═══════════ -->
 <section class="testimonials" id="avis" aria-labelledby="testi-title">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
-      <span class="label">Témoignages</span>
-      <h2 class="section-title" id="testi-title">Ils nous font confiance</h2>
+      <span class="label">Nos engagements</span>
+      <h2 class="section-title" id="testi-title">Notre charte de service</h2>
       <p class="section-sub" style="margin:0 auto;">
-        Des clients de secteurs variés témoignent de leur expérience avec FKH Sécurité.
+        Des engagements concrets et mesurables, applicables à chaque mission.
+        Notre conformité au cadre légal et nos standards de qualité ne sont pas négociables.
       </p>
     </div>
 
-    <div class="testimonials-grid stagger-children">
-      <div class="testi-card">
-        <div class="testi-stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="testi-quote">"Nous faisons appel à FKH Sécurité pour la surveillance de notre entrepôt de nuit. Équipe sérieuse, ponctuelle et réactive. Je recommande sans hésitation."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" aria-hidden="true">ML</div>
-          <div>
-            <div class="testi-name">Marc L.</div>
-            <div class="testi-role">Directeur logistique — PME industrielle, Seine-Saint-Denis</div>
-          </div>
-        </div>
-      </div>
+    <div class="commitments-grid stagger-children">
 
-      <div class="testi-card">
-        <div class="testi-stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <article class="commitment-card">
+        <div class="commitment-num">01</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
         </div>
-        <p class="testi-quote">"FKH a assuré la sécurité de notre salon annuel — 800 personnes, 2 jours. Filtrage impeccable, aucun incident. L'équipe était professionnelle et bien briefée."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" aria-hidden="true">SC</div>
-          <div>
-            <div class="testi-name">Sophie C.</div>
-            <div class="testi-role">Responsable événementiel — Association professionnelle, Paris 75</div>
-          </div>
+        <h3 class="commitment-title">Réponse sous 2 heures</h3>
+        <p class="commitment-desc">
+          Toute demande de devis reçue en heures ouvrées reçoit une première réponse
+          détaillée en moins de 2 heures. Pour les missions urgentes, déploiement
+          opérationnel possible en 24h.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">Devis chiffré</span>
+          <span class="commitment-tag">Visite préalable possible</span>
         </div>
-      </div>
+      </article>
 
-      <div class="testi-card">
-        <div class="testi-stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <article class="commitment-card">
+        <div class="commitment-num">02</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"/>
+            <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.5 0 4.77 1 6.41 2.64"/>
+          </svg>
         </div>
-        <p class="testi-quote">"Très bonne expérience avec les agents SSIAP pour notre ERP. Toujours présents, connaissent les procédures. La direction de l'établissement est entièrement satisfaite."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" aria-hidden="true">RB</div>
-          <div>
-            <div class="testi-name">Rachid B.</div>
-            <div class="testi-role">Directeur de site — Centre commercial, Val-de-Marne</div>
-          </div>
+        <h3 class="commitment-title">100% agents certifiés CNAPS</h3>
+        <p class="commitment-desc">
+          Aucun agent non titulaire d'une carte professionnelle CNAPS valide ne peut
+          intervenir sur vos sites. Vérifications systématiques avant chaque mission.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">Carte professionnelle valide</span>
+          <span class="commitment-tag">Casier vierge</span>
         </div>
-      </div>
+      </article>
+
+      <article class="commitment-card">
+        <div class="commitment-num">03</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3 class="commitment-title">Conformité IDCC 1351</h3>
+        <p class="commitment-desc">
+          Application stricte de la convention collective nationale de la sécurité
+          privée : taux horaires conventionnels, primes d'habillage, panier de nuit,
+          majorations dimanches et jours fériés.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">URSSAF à jour</span>
+          <span class="commitment-tag">Attestations sur demande</span>
+        </div>
+      </article>
+
+      <article class="commitment-card">
+        <div class="commitment-num">04</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3 class="commitment-title">Reporting & traçabilité</h3>
+        <p class="commitment-desc">
+          Main courante numérisée, rondes horodatées et géolocalisées, reporting
+          hebdomadaire ou mensuel selon votre convenance. Chaque incident est
+          documenté et archivé.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">Main courante</span>
+          <span class="commitment-tag">Rapports détaillés</span>
+        </div>
+      </article>
+
+      <article class="commitment-card">
+        <div class="commitment-num">05</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 11h-6M19 8v6"/>
+          </svg>
+        </div>
+        <h3 class="commitment-title">Continuité de service</h3>
+        <p class="commitment-desc">
+          Aucune mission interrompue. Système de remplacement structuré : tout
+          agent absent est remplacé en moins d'une heure par un agent qualifié,
+          briefé sur les consignes du site.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">Pool d'agents prêts</span>
+          <span class="commitment-tag">Astreinte 24/7</span>
+        </div>
+      </article>
+
+      <article class="commitment-card">
+        <div class="commitment-num">06</div>
+        <div class="commitment-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3 class="commitment-title">RC Pro &amp; assurances</h3>
+        <p class="commitment-desc">
+          Responsabilité civile professionnelle souscrite pour l'ensemble de
+          nos prestations. Attestation transmise à chaque client à la signature
+          du contrat.
+        </p>
+        <div class="commitment-meta">
+          <span class="commitment-tag">RC Pro</span>
+          <span class="commitment-tag">Assurance véhicules</span>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -1418,74 +2186,155 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="label">Couverture géographique</span>
-      <h2 class="section-title" id="zones-title">Zones d'intervention</h2>
+      <h2 class="section-title" id="zones-title">Présents partout en France</h2>
       <p class="section-sub">
-        FKH Sécurité opère principalement à Paris et en Île-de-France.
-        Contactez-nous pour toute demande hors zone.
+        FKH Sécurité intervient sur l'ensemble du territoire métropolitain.
+        Notre siège est implanté à Paris, mais nos équipes se déplacent dans
+        toutes les régions françaises selon vos besoins.
       </p>
     </div>
 
     <div class="zones-grid">
       <div class="zones-list stagger-children">
-        <div class="zone-item">Paris (75) — Tous arrondissements</div>
-        <div class="zone-item">Hauts-de-Seine (92)</div>
-        <div class="zone-item">Seine-Saint-Denis (93)</div>
-        <div class="zone-item">Val-de-Marne (94)</div>
-        <div class="zone-item">Val-d'Oise (95)</div>
-        <div class="zone-item">Seine-et-Marne (77)</div>
-        <div class="zone-item">Yvelines (78)</div>
-        <div class="zone-item">Essonne (91)</div>
-        <div class="zone-item" style="color:var(--grey); font-size:0.8rem; padding-top:var(--sp-md);">
-          Autres régions sur demande — nous consulter
+        <div class="zone-region">
+          <div class="zone-region-title">Île-de-France &amp; Centre</div>
+          <div class="zone-item">Paris &amp; Petite Couronne (75/92/93/94)</div>
+          <div class="zone-item">Grande Couronne (77/78/91/95)</div>
+          <div class="zone-item">Centre-Val de Loire</div>
+        </div>
+        <div class="zone-region">
+          <div class="zone-region-title">Nord &amp; Ouest</div>
+          <div class="zone-item">Hauts-de-France &amp; Normandie</div>
+          <div class="zone-item">Bretagne &amp; Pays de la Loire</div>
+          <div class="zone-item">Nouvelle-Aquitaine</div>
+        </div>
+        <div class="zone-region">
+          <div class="zone-region-title">Est &amp; Sud</div>
+          <div class="zone-item">Grand Est &amp; Bourgogne-Franche-Comté</div>
+          <div class="zone-item">Auvergne-Rhône-Alpes</div>
+          <div class="zone-item">Occitanie &amp; PACA</div>
+        </div>
+        <div class="zones-cta">
+          <a href="#contact" class="zones-cta-link">
+            Vous êtes hors de ces zones ?
+            <span class="zones-cta-arrow">Contactez-nous →</span>
+          </a>
         </div>
       </div>
 
       <div class="zones-map reveal">
-        <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style="padding:var(--sp-md);">
+        <svg viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" style="padding:var(--sp-md);" aria-label="Carte de France métropolitaine — Zones d'intervention FKH Sécurité">
           <defs>
-            <filter id="glow">
+            <filter id="glow-fr">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
               <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
+            <linearGradient id="france-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(192,39,45,0.18)"/>
+              <stop offset="100%" stop-color="rgba(192,39,45,0.05)"/>
+            </linearGradient>
           </defs>
-          <rect width="400" height="380" fill="var(--bg3)" rx="3"/>
+          <rect width="420" height="460" fill="var(--bg3)" rx="3"/>
           <g stroke="rgba(242,239,233,0.04)" stroke-width="0.5">
-            <line x1="0" y1="95" x2="400" y2="95"/>
-            <line x1="0" y1="190" x2="400" y2="190"/>
-            <line x1="0" y1="285" x2="400" y2="285"/>
-            <line x1="100" y1="0" x2="100" y2="380"/>
-            <line x1="200" y1="0" x2="200" y2="380"/>
-            <line x1="300" y1="0" x2="300" y2="380"/>
+            <line x1="0" y1="115" x2="420" y2="115"/>
+            <line x1="0" y1="230" x2="420" y2="230"/>
+            <line x1="0" y1="345" x2="420" y2="345"/>
+            <line x1="105" y1="0" x2="105" y2="460"/>
+            <line x1="210" y1="0" x2="210" y2="460"/>
+            <line x1="315" y1="0" x2="315" y2="460"/>
           </g>
-          <path d="M80 60 L130 40 L200 50 L280 45 L340 80 L360 140 L350 210 L320 270 L260 320 L190 340 L120 320 L70 270 L50 200 L55 130 Z"
-                fill="rgba(192,39,45,0.06)" stroke="rgba(192,39,45,0.3)" stroke-width="1.5"/>
-          <path d="M160 130 L200 120 L240 130 L250 170 L240 210 L200 220 L160 210 L150 170 Z"
-                fill="rgba(192,39,45,0.15)" stroke="rgba(192,39,45,0.5)" stroke-width="1"/>
-          <circle cx="200" cy="168" r="8" fill="var(--red)" filter="url(#glow)" opacity="0.9"/>
-          <circle cx="200" cy="168" r="4" fill="#fff"/>
-          <circle cx="155" cy="150" r="4" fill="rgba(192,39,45,0.6)"/>
-          <circle cx="245" cy="148" r="4" fill="rgba(192,39,45,0.6)"/>
-          <circle cx="155" cy="190" r="4" fill="rgba(192,39,45,0.6)"/>
-          <circle cx="245" cy="190" r="4" fill="rgba(192,39,45,0.6)"/>
-          <circle cx="120" cy="115" r="3" fill="rgba(192,39,45,0.4)"/>
-          <circle cx="280" cy="115" r="3" fill="rgba(192,39,45,0.4)"/>
-          <circle cx="120" cy="240" r="3" fill="rgba(192,39,45,0.4)"/>
-          <circle cx="280" cy="235" r="3" fill="rgba(192,39,45,0.4)"/>
-          <text x="200" y="155" text-anchor="middle" fill="var(--white)" font-size="9" font-family="Bebas Neue, sans-serif" letter-spacing="1">PARIS</text>
-          <text x="152" y="105" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">95</text>
-          <text x="280" y="105" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">77</text>
-          <text x="108" y="155" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">78</text>
-          <text x="295" y="155" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">93</text>
-          <text x="108" y="240" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">91</text>
-          <text x="295" y="240" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">94</text>
-          <text x="145" y="172" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">92</text>
-          <text x="252" y="172" text-anchor="middle" fill="rgba(242,239,233,0.5)" font-size="7" font-family="Outfit, sans-serif">93</text>
-          <circle cx="200" cy="168" r="16" fill="none" stroke="var(--red)" stroke-width="1" opacity="0.3">
-            <animate attributeName="r" values="8;24;8" dur="3s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
-          </circle>
+
+          <!-- Silhouette France métropolitaine simplifiée -->
+          <path d="M 130,80
+                   Q 165,70 195,75
+                   L 235,72
+                   Q 270,80 295,95
+                   L 320,115
+                   Q 340,140 345,170
+                   L 350,205
+                   Q 355,235 350,265
+                   L 355,300
+                   Q 358,335 345,360
+                   L 320,385
+                   Q 290,400 260,395
+                   L 225,400
+                   Q 195,398 175,385
+                   L 145,375
+                   Q 115,360 100,335
+                   L 85,300
+                   Q 75,265 80,230
+                   L 75,195
+                   Q 78,160 95,130
+                   L 110,105
+                   Q 120,90 130,80 Z"
+                fill="url(#france-grad)"
+                stroke="rgba(192,39,45,0.5)"
+                stroke-width="1.5"/>
+
+          <!-- Bretagne simplifiée -->
+          <path d="M 75,195 Q 55,200 45,210 Q 50,225 70,222 Q 80,215 75,195 Z"
+                fill="rgba(192,39,45,0.10)"
+                stroke="rgba(192,39,45,0.4)"
+                stroke-width="1"/>
+
+          <!-- Cotentin -->
+          <path d="M 130,80 Q 132,72 138,70 Q 142,75 140,82 Z"
+                fill="rgba(192,39,45,0.10)"
+                stroke="rgba(192,39,45,0.4)"
+                stroke-width="0.8"/>
+
+          <!-- Pin Paris (siège) - gros -->
+          <g transform="translate(220, 145)" filter="url(#glow-fr)">
+            <circle r="11" fill="var(--red)" opacity="0.95"/>
+            <circle r="5" fill="#fff"/>
+            <circle r="22" fill="none" stroke="var(--red)" stroke-width="1" opacity="0.4">
+              <animate attributeName="r" values="11;30;11" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <text x="220" y="135" text-anchor="middle" fill="var(--white)" font-size="11" font-family="Bebas Neue, sans-serif" letter-spacing="2" font-weight="700">PARIS</text>
+          <text x="220" y="170" text-anchor="middle" fill="var(--red)" font-size="7" font-family="Outfit, sans-serif" letter-spacing="2" font-weight="600">SIÈGE SOCIAL</text>
+
+          <!-- Autres pins majeurs -->
+          <circle cx="280" cy="115" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="287" y="118" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Lille</text>
+
+          <circle cx="100" cy="220" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="78" y="220" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif" text-anchor="end">Rennes</text>
+
+          <circle cx="155" cy="270" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="148" y="285" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif" text-anchor="end">Nantes</text>
+
+          <circle cx="240" cy="225" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="247" y="228" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Dijon</text>
+
+          <circle cx="285" cy="195" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="292" y="198" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Strasbourg</text>
+
+          <circle cx="265" cy="285" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="272" y="288" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Lyon</text>
+
+          <circle cx="180" cy="335" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="173" y="350" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif" text-anchor="end">Bordeaux</text>
+
+          <circle cx="225" cy="370" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="232" y="373" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Toulouse</text>
+
+          <circle cx="305" cy="365" r="4.5" fill="rgba(192,39,45,0.7)"/>
+          <text x="312" y="368" fill="rgba(242,239,233,0.55)" font-size="8" font-family="Outfit, sans-serif">Marseille</text>
+
+          <circle cx="335" cy="370" r="4" fill="rgba(192,39,45,0.5)"/>
+          <text x="342" y="373" fill="rgba(242,239,233,0.4)" font-size="8" font-family="Outfit, sans-serif">Nice</text>
+
+          <!-- Légende discrète -->
+          <g transform="translate(40, 425)">
+            <circle cx="0" cy="0" r="4.5" fill="var(--red)"/>
+            <text x="10" y="3" fill="rgba(242,239,233,0.6)" font-size="8" font-family="Outfit, sans-serif">Siège</text>
+            <circle cx="55" cy="0" r="4" fill="rgba(192,39,45,0.7)"/>
+            <text x="65" y="3" fill="rgba(242,239,233,0.6)" font-size="8" font-family="Outfit, sans-serif">Métropoles desservies</text>
+          </g>
         </svg>
-        <div class="zones-map-label">Île-de-France — Zone principale</div>
+        <div class="zones-map-label">France métropolitaine — Couverture nationale</div>
       </div>
     </div>
   </div>
@@ -1524,7 +2373,7 @@
           </div>
           <div class="perk">
             <div class="perk-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span>Postes disponibles en Île-de-France — Gardiennage, événementiel, SSIAP</span>
+            <span>Postes disponibles partout en France — Gardiennage, événementiel, SSIAP</span>
           </div>
         </div>
       </div>
@@ -1687,7 +2536,7 @@
         <a href="/" class="nav-logo" style="margin-bottom:var(--sp-sm); display:inline-flex;">
           <img src="fkh-logo.png" alt="FKH Sécurité" class="nav-logo-img" width="180" height="62">
         </a>
-        <p>Prestataire de sécurité privée agréé CNAPS, opérant à Paris et en Île-de-France depuis 2020. Agents certifiés, disponibles 24h/24.</p>
+        <p>Prestataire de sécurité privée agréé CNAPS, intervenant sur l'ensemble du territoire métropolitain depuis 2020. Siège social à Paris, agents certifiés, disponibles 24h/24.</p>
         <div class="footer-social">
           <a href="#" class="footer-social-link" aria-label="LinkedIn FKH Sécurité">
             <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -1788,13 +2637,13 @@
         entry.target.classList.add('is-visible');
         if (entry.target.classList.contains('stagger-children')) {
           entry.target.querySelectorAll(':scope > *').forEach((child, i) => {
-            child.style.transitionDelay = `${i * 0.08}s`;
+            child.style.transitionDelay = `${i * 0.06}s`;
           });
         }
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
 
   document.querySelectorAll('.reveal, .stagger-children').forEach(el => {
     revealObserver.observe(el);
