@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FKH Sécurité — Variante A v3 (Images réelles)</title>
+<meta name="description" content="FKH Sécurité, société de sécurité privée agréée CNAPS depuis 2020. Surveillance, gardiennage, SSIAP, événementiel, mobile, cynophile partout en France métropolitaine. Devis sous 2h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand-blue:#1E2A47;
+  --brand-blue-light:#2F3F66;
+  --bg:#0F1626;
+  --surface:#1A2238;
+  --surface-2:#243150;
+  --accent:#D85C2E;
+  --accent-glow:rgba(216,92,46,0.5);
+  --text:#F7F2EA;
+  --muted:#9AA0AC;
+  --border:rgba(247,242,234,0.1);
+  --display:'Bebas Neue',sans-serif;
+  --body:'Outfit',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity:.03;
+  pointer-events:none;
+  z-index:9999;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* TYPO */
+.t-hero{font-family:var(--display);font-size:clamp(3rem,9vw,8rem);line-height:.92;letter-spacing:.005em;font-weight:400}
+.t-title{font-family:var(--display);font-size:clamp(2rem,5vw,4rem);line-height:1;letter-spacing:.005em}
+.t-heading{font-size:clamp(1.3rem,2.5vw,1.85rem);line-height:1.2;font-weight:600}
+.t-body{font-size:1.05rem;line-height:1.75;color:rgba(247,242,234,.78)}
+.t-label{font-family:var(--body);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+.t-small{font-size:.85rem;line-height:1.6;color:var(--muted)}
+
+/* LAYOUT */
+.container{max-width:1280px;margin:0 auto;padding:0 2rem}
+section{padding:7rem 0;position:relative}
+section + section{border-top:1px solid var(--border)}
+
+/* TOP BAR */
+.topbar{
+  background:linear-gradient(90deg,var(--accent) 0%,var(--brand-blue) 100%);
+  color:#fff;
+  font-size:.78rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:600;
+  text-align:center;
+  padding:.6rem 1rem;
+  position:relative;
+  z-index:101;
+}
+.topbar span{display:inline-block;margin:0 .6rem}
+.topbar .dot{color:rgba(255,255,255,.6);margin:0 .3rem}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;
+  background:rgba(6,8,10,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  z-index:100;
+  transition:background .3s, border-color .3s;
+}
+.nav.scrolled{background:rgba(6,8,10,.95)}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 0;
+}
+.nav-logo{
+  font-family:var(--display);
+  font-size:1.7rem;
+  letter-spacing:.05em;
+  color:#fff;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  font-size:.78rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:rgba(247,242,234,.75);
+  transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:-6px;left:0;right:0;
+  height:1px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-size:.75rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;
+  padding:1.05rem 2.2rem;
+  position:relative;overflow:hidden;
+  transition:transform .25s ease;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);
+  box-shadow:0 0 0 transparent;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transform:translateX(-100%);
+  transition:transform .55s ease;
+}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{
+  color:var(--text);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  padding:.7rem 0;
+  letter-spacing:.18em;
+}
+.btn-ghost:hover{border-bottom-color:#fff}
+.btn-arrow{
+  width:18px;height:1px;background:currentColor;
+  position:relative;display:inline-block;
+}
+.btn-arrow::after{
+  content:'';position:absolute;right:0;top:-3px;
+  width:7px;height:7px;
+  border-top:1px solid currentColor;
+  border-right:1px solid currentColor;
+  transform:rotate(45deg);
+}
+.nav-cta{padding:.85rem 1.7rem;font-size:.7rem}
+
+/* HERO */
+.hero{
+  min-height:92vh;
+  display:flex;align-items:center;
+  position:relative;
+  padding:7rem 0 5rem;
+  border-top:none !important;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 25% 35%,rgba(216,92,46,.18),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 70%,rgba(216,92,46,.08),transparent 60%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:80px 80px;
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(247,242,234,.6);
+  margin-bottom:2.5rem;
+  padding:.5rem 1rem;
+  border:1px solid var(--border);
+  border-radius:50px;
+}
+.hero-tag-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent-glow);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hero h1{margin-bottom:2rem;max-width:1100px}
+.hero h1 .accent{color:var(--accent);font-style:italic;font-family:var(--display)}
+.hero-sub{
+  font-size:clamp(1rem,1.6vw,1.2rem);
+  max-width:640px;
+  margin-bottom:3rem;
+  color:rgba(247,242,234,.75);
+  line-height:1.65;
+}
+.hero-actions{display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap;margin-bottom:4rem}
+.hero-trust{
+  display:flex;gap:2rem;flex-wrap:wrap;
+  padding-top:2rem;
+  border-top:1px solid var(--border);
+}
+.hero-trust-item{display:flex;align-items:center;gap:.6rem}
+.hero-trust-num{
+  font-family:var(--display);
+  font-size:2.2rem;
+  color:var(--accent);
+  line-height:1;
+}
+.hero-trust-label{
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  max-width:130px;
+  line-height:1.4;
+}
+
+/* ABOUT */
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.about-left .t-label{margin-bottom:1.2rem;display:block}
+.about-left h2{margin-bottom:0}
+.about-right p{margin-bottom:1.5rem}
+.values{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;
+  margin-top:5rem;
+}
+.value-card{
+  padding:2rem;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-left:2px solid var(--accent);
+  position:relative;
+  transition:transform .25s,border-color .25s;
+}
+.value-card:hover{transform:translateY(-4px);border-left-color:#fff}
+.value-num{
+  font-family:var(--display);
+  font-size:.9rem;
+  color:var(--accent);
+  letter-spacing:.2em;
+  margin-bottom:.8rem;
+  display:block;
+}
+.value-card h3{margin-bottom:.5rem;font-family:var(--display);font-size:1.6rem;letter-spacing:.02em}
+.value-card p{font-size:.92rem;color:rgba(247,242,234,.7);line-height:1.5}
+
+/* SERVICES */
+.services-header{display:flex;justify-content:space-between;align-items:end;margin-bottom:5rem;flex-wrap:wrap;gap:2rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:3rem 2.5rem;
+  position:relative;
+  transition:all .35s;
+  overflow:hidden;
+}
+.service::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .4s;
+}
+.service:hover{transform:translateY(-6px);background:var(--surface-2)}
+.service:hover::before{transform:scaleX(1)}
+.service-num{
+  font-family:var(--display);
+  font-size:5.5rem;
+  line-height:1;
+  color:rgba(216,92,46,.12);
+  position:absolute;
+  right:1.5rem;top:1rem;
+  transition:color .3s;
+}
+.service:hover .service-num{color:rgba(216,92,46,.3)}
+.service-icon{
+  width:54px;height:54px;
+  margin-bottom:2rem;
+  color:var(--accent);
+}
+.service h3{margin-bottom:1rem;font-family:var(--display);font-size:1.7rem;letter-spacing:.02em;line-height:1.1}
+.service-tag{
+  display:block;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1.2rem;
+  font-weight:600;
+}
+.service p{font-size:.95rem;color:rgba(247,242,234,.72);line-height:1.65;margin-bottom:1.5rem}
+.service-link{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text);
+  font-weight:600;
+  transition:color .2s;
+}
+.service-link:hover{color:var(--accent)}
+
+/* WHY US */
+.why{background:var(--surface)}
+.why-header{text-align:center;margin-bottom:5rem}
+.why-header .t-label{margin-bottom:1.5rem;display:block}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.why-card{
+  padding:2.5rem 2rem;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  position:relative;
+  transition:all .3s;
+}
+.why-card:hover{border-color:rgba(216,92,46,.4);transform:translateY(-4px)}
+.why-card-num{
+  font-family:var(--display);
+  font-size:.9rem;
+  letter-spacing:.25em;
+  color:var(--accent);
+  margin-bottom:1rem;
+  display:block;
+}
+.why-card h3{font-size:1.2rem;margin-bottom:1rem;line-height:1.3;font-weight:600}
+.why-card p{font-size:.92rem;color:rgba(247,242,234,.7);line-height:1.65}
+.why-card .cnaps-num{
+  display:inline-block;
+  font-family:'Courier New',monospace;
+  font-size:.78rem;
+  background:rgba(216,92,46,.1);
+  border:1px solid rgba(216,92,46,.3);
+  padding:.4rem .7rem;
+  margin-top:.7rem;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+
+/* ENGAGEMENTS */
+.engagements{padding-top:5rem}
+.engagements-header{text-align:center;margin-bottom:4rem}
+.engagement-list{
+  max-width:900px;margin:0 auto;
+  display:grid;gap:0;
+  border-top:1px solid var(--border);
+}
+.engagement-item{
+  padding:2.5rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:2rem;
+  align-items:start;
+  transition:background .3s;
+}
+.engagement-item:hover{background:rgba(216,92,46,.04)}
+.engagement-num{
+  font-family:var(--display);
+  font-size:1.5rem;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+.engagement-text strong{
+  display:block;
+  font-family:var(--display);
+  font-size:1.5rem;
+  letter-spacing:.02em;
+  margin-bottom:.5rem;
+  color:#fff;
+  font-weight:400;
+}
+.engagement-text p{color:rgba(247,242,234,.7);font-size:.98rem;line-height:1.65}
+
+/* CAREERS */
+.careers{
+  background:var(--surface);
+  position:relative;
+  overflow:hidden;
+}
+.careers::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(216,92,46,.1),transparent);
+}
+.careers-inner{
+  max-width:780px;margin:0 auto;
+  text-align:center;
+  position:relative;z-index:2;
+}
+.careers h2{margin-bottom:1.5rem}
+.careers p{margin-bottom:2.5rem;color:rgba(247,242,234,.78);font-size:1.1rem;line-height:1.7}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+.contact-left h2{margin-bottom:2rem}
+.contact-left .t-label{margin-bottom:1.5rem;display:block}
+.contact-info{margin-top:3rem;display:grid;gap:1.5rem}
+.contact-info-item{
+  padding:1.5rem;
+  border:1px solid var(--border);
+  display:flex;align-items:center;gap:1.2rem;
+  transition:border-color .25s;
+}
+.contact-info-item:hover{border-color:rgba(216,92,46,.4)}
+.contact-info-icon{
+  width:42px;height:42px;
+  flex-shrink:0;
+  color:var(--accent);
+}
+.contact-info-label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;display:block}
+.contact-info-value{font-size:1.05rem;color:#fff;font-weight:500}
+.contact-info-value a:hover{color:var(--accent)}
+
+/* FORM */
+.form{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:3rem;
+  position:relative;
+}
+.form::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+.form h3{margin-bottom:1rem;font-family:var(--display);font-size:1.8rem;letter-spacing:.02em}
+.form-intro{margin-bottom:2rem;color:rgba(247,242,234,.7);font-size:.95rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-field{margin-bottom:1rem}
+.form-field label{
+  display:block;
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;
+  margin-bottom:.5rem;
+}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:.95rem 1rem;
+  font-family:inherit;font-size:.95rem;
+  transition:border-color .2s;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{
+  outline:none;
+  border-color:var(--accent);
+}
+.form-field textarea{resize:vertical;min-height:120px}
+.form-rgpd{font-size:.78rem;color:var(--muted);line-height:1.5;margin:1.5rem 0}
+.form-rgpd a{color:var(--accent);text-decoration:underline}
+.form-rgpd input[type=checkbox]{margin-right:.5rem;accent-color:var(--accent)}
+.form button[type=submit]{margin-top:1rem;width:100%;justify-content:center}
+
+/* FOOTER */
+footer{
+  background:#0A1020;
+  border-top:1px solid var(--border);
+  padding:5rem 0 0;
+  position:relative;
+}
+footer::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1.2fr;
+  gap:4rem;
+  margin-bottom:4rem;
+}
+.footer-brand .nav-logo{font-size:2rem;display:block;margin-bottom:1rem}
+.footer-brand p{color:rgba(247,242,234,.6);font-size:.92rem;line-height:1.65;max-width:320px;margin-bottom:1.5rem}
+.footer-cnaps{
+  font-family:'Courier New',monospace;
+  font-size:.72rem;
+  color:rgba(247,242,234,.5);
+  background:rgba(216,92,46,.05);
+  border:1px solid rgba(216,92,46,.2);
+  padding:.7rem .9rem;
+  letter-spacing:.03em;
+  display:block;
+  margin-bottom:.6rem;
+}
+.footer-col h4{
+  font-family:var(--display);
+  font-size:1.1rem;
+  letter-spacing:.05em;
+  margin-bottom:1.5rem;
+  color:#fff;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.7rem}
+.footer-col a{
+  color:rgba(247,242,234,.65);
+  font-size:.92rem;
+  transition:color .2s;
+}
+.footer-col a:hover{color:var(--accent)}
+
+/* FOOTER LEGAL */
+.footer-legal{
+  border-top:1px solid var(--border);
+  padding:2rem 0;
+  font-size:.78rem;
+  color:rgba(247,242,234,.5);
+  line-height:1.7;
+}
+.footer-legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1.5rem}
+.footer-legal-mention{
+  background:rgba(255,255,255,.02);
+  border-left:2px solid var(--accent);
+  padding:1.2rem 1.5rem;
+  margin-bottom:1.5rem;
+  font-size:.78rem;
+  color:rgba(247,242,234,.65);
+  line-height:1.7;
+}
+.footer-legal-mention strong{color:#fff;display:block;margin-bottom:.5rem;font-family:var(--display);font-size:.95rem;letter-spacing:.1em}
+.footer-bottom{
+  border-top:1px solid var(--border);
+  padding:1.5rem 0;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  font-size:.75rem;color:rgba(247,242,234,.45);
+}
+.footer-bottom a:hover{color:var(--accent)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* MOBILE */
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:.5rem;cursor:pointer}
+.nav-burger span{width:24px;height:2px;background:var(--text);transition:.3s}
+.nav-burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-burger.active span:nth-child(2){opacity:0}
+.nav-burger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+
+@media (max-width:900px){
+  .container{padding:0 1.2rem}
+  section{padding:5rem 0}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  .nav-links.open{
+    display:flex;
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;
+    background:var(--surface);
+    padding:2rem;
+    gap:1.5rem;
+    border-bottom:1px solid var(--border);
+  }
+  .hero{min-height:auto;padding:5rem 0 4rem}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .hero-trust{gap:1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .values{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .services-header{flex-direction:column;align-items:flex-start}
+  .why-grid{grid-template-columns:1fr}
+  .engagement-item{grid-template-columns:1fr;gap:.5rem}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .form-row{grid-template-columns:1fr}
+  .form{padding:2rem 1.5rem}
+  .footer-legal-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media (max-width:540px){
+  .footer-grid{grid-template-columns:1fr}
+}
+
+.nav-logo-img{height:38px;width:auto;display:block;filter:brightness(1.05)}
+.footer-logo-img{height:50px;width:auto;display:block;margin-bottom:1rem;filter:brightness(1.05)}
+@media (max-width:900px){.nav-logo-img{height:32px}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+/* === VARIANTE A v3 — IMAGES RÉELLES FKH === */
+
+/* HERO — Image avec overlay sombre pour lisibilité texte */
+.hero-visual{
+  position:absolute;right:-5%;top:50%;transform:translateY(-50%);
+  width:45%;aspect-ratio:3/4;
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  overflow:hidden;
+  z-index:1;
+}
+.hero-visual-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+.hero-visual::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(15,22,38,0.45) 0%,rgba(15,22,38,0.15) 50%,rgba(15,22,38,0.55) 100%);
+  z-index:2;
+  pointer-events:none;
+}
+.hero-visual-fkh{
+  position:absolute;bottom:1.5rem;right:1.5rem;
+  font-family:var(--display);font-size:1.5rem;letter-spacing:.1em;
+  color:rgba(255,255,255,.6);
+  z-index:3;
+}
+
+/* SERVICES — Vraies images en remplacement des placeholders */
+.service-img{
+  width:calc(100% + 2rem);
+  aspect-ratio:16/10;
+  object-fit:cover;
+  margin:-1rem -1rem 2rem -1rem;
+  display:block;
+  border-bottom:1px solid var(--border);
+}
+
+/* ABOUT — Image équipe direction */
+.about-img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  margin-top:3rem;
+  border:1px solid var(--border);
+  border-top:3px solid var(--accent);
+  display:block;
+}
+
+/* CAREERS — Image recrutement */
+.careers-img{
+  width:100%;
+  max-width:780px;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  margin:0 auto 3rem;
+  border:1px solid var(--border);
+  display:block;
+}
+
+/* AMBIANCE FOOTER — Bandeau atmosphérique */
+.footer-ambiance{
+  width:100%;
+  aspect-ratio:21/9;
+  object-fit:cover;
+  display:block;
+  opacity:0.45;
+  filter:saturate(0.85) brightness(0.9);
+  margin-bottom:0;
+  border-top:1px solid var(--border);
+}
+
+.hero{position:relative;overflow:hidden}
+@media (max-width:1100px){.hero-visual{display:none}}
+
+/* SECTORS */
+.sectors{background:var(--bg);position:relative}
+.sectors-header{text-align:center;margin-bottom:5rem}
+.sectors-header .t-label{margin-bottom:1.5rem;display:block}
+.sectors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sector-card{
+  padding:2.5rem 2rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  position:relative;
+  transition:all .3s;
+  text-align:left;
+}
+.sector-card::before{
+  content:'';
+  position:absolute;top:0;left:0;width:0;
+  height:1px;background:var(--accent);
+  transition:width .4s;
+}
+.sector-card:hover{transform:translateY(-4px);background:var(--surface-2);border-color:rgba(216,92,46,.3)}
+.sector-card:hover::before{width:100%}
+.sector-icon{
+  width:48px;height:48px;
+  margin-bottom:1.5rem;
+  color:var(--accent);
+}
+.sector-card h3{font-size:1.3rem;margin-bottom:.7rem;font-weight:600;line-height:1.2}
+.sector-card p{font-size:.92rem;color:rgba(247,242,234,.7);line-height:1.55}
+@media (max-width:900px){.sectors-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>● CNAPS AUT-021</span><span class="dot">·</span>
+  <span>24H/24</span><span class="dot">·</span>
+  <span>7J/7</span><span class="dot">·</span>
+  <span>DEVIS SOUS 2H</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="FKH Sécurité"><img src="data:image/png;base64,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" alt="FKH Sécurité" class="nav-logo-img"/></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#sectors">Secteurs</a></li>
+      <li><a href="#why">Pourquoi nous</a></li>
+      <li><a href="#careers">Carrières</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary nav-cta">Devis sous 2h</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container hero-inner">
+    <span class="hero-tag"><span class="hero-tag-dot"></span>Sécurité privée agréée CNAPS · France métropolitaine</span>
+    <h1 class="t-hero">La sécurité privée,<br><span class="accent">exécutée</span> sans concession.</h1>
+    <p class="hero-sub">FKH protège vos sites, vos événements et vos équipes. Agents 100% certifiés CNAPS. Devis sous 2 heures, intervention 24/7, partout en France métropolitaine.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Demander un devis <span class="btn-arrow"></span></a>
+      <a href="#services" class="btn btn-ghost">Voir nos services →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">5</span>
+        <span class="hero-trust-label">ans d'activité opérationnelle</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">100%</span>
+        <span class="hero-trust-label">agents CNAPS-actifs</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">2H</span>
+        <span class="hero-trust-label">délai devis ouvré</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">24/7</span>
+        <span class="hero-trust-label">astreinte permanente</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="images/hero-fkh.jpg" alt="Agent FKH Sécurité en mission de protection à Paris" class="hero-visual-img" loading="eager">
+    <span class="hero-visual-fkh">FKH</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <span class="t-label">Qui sommes-nous</span>
+        <h2 class="t-title">FKH Sécurité,<br>cinq ans d'engagement<br>opérationnel.</h2>
+      </div>
+      <div class="about-right reveal">
+        <p class="t-body">Fondée en 2020, FKH Sécurité accompagne entreprises, collectivités et organisateurs d'événements partout en France métropolitaine.</p>
+        <p class="t-body">Notre exigence : des agents intégralement certifiés CNAPS, une réactivité immédiate, une discrétion absolue. Nous opérons sous le numéro d'autorisation <strong style="color:var(--accent)">AUT-021-2123-11-08-20240796361</strong>, dirigés par Moussa Diane (AGD-093-2028-08-29-20230440794).</p>
+        <p class="t-body">Conventional collective IDCC 1351 appliquée intégralement. Activité réglementée par le Livre VI du Code de la sécurité intérieure et la loi n°83-629 du 12 juillet 1983.</p>
+      </div>
+    </div>
+    <div class="values">
+      <div class="value-card reveal">
+        <span class="value-num">— 01</span>
+        <h3>Rigueur</h3>
+        <p>Protocoles écrits, mains courantes horodatées GPS, reporting client systématique.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-num">— 02</span>
+        <h3>Réactivité</h3>
+        <p>Devis sous 2h en heures ouvrées. Agent déployé sous 24h, partout en France.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-num">— 03</span>
+        <h3>Discrétion</h3>
+        <p>Aucune référence client publiée sans accord écrit. Confidentialité contractuelle.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-num">— 04</span>
+        <h3>Engagement</h3>
+        <p>Astreinte permanente. Dirigeant joignable. Pas de standard externalisé.</p>
+      </div>
+    </div>
+    <img src="images/about-direction.webp" alt="Direction FKH Sécurité - Équipe dirigeante" class="about-img reveal" loading="lazy">
+  </div>
+</section>
+
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="container">
+    <div class="sectors-header reveal">
+      <span class="t-label">Secteurs d'intervention</span>
+      <h2 class="t-title" style="margin-top:1.2rem">Là où FKH<br>est déjà déployée.</h2>
+    </div>
+    <div class="sectors-grid">
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 22h20"/><path d="M3 22V8L9 4v18"/><path d="M9 12h6v10"/><path d="M15 22V10l6 4v8"/></svg>
+        <h3>Industrie & Logistique</h3>
+        <p>Sites de production, entrepôts, plateformes logistiques.</p>
+      </div>
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="2" width="16" height="20"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+        <h3>Tertiaire & Bureaux</h3>
+        <p>Sièges sociaux, immeubles de bureaux, parcs tertiaires.</p>
+      </div>
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+        <h3>Commerces & Retail</h3>
+        <p>Grandes surfaces, boutiques, centres commerciaux, GMS.</p>
+      </div>
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        <h3>Agences bancaires</h3>
+        <p>Sécurisation préventive et intervention sur incidents.</p>
+      </div>
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg>
+        <h3>Événementiel</h3>
+        <p>Concerts, salons professionnels, manifestations sportives.</p>
+      </div>
+      <div class="sector-card reveal">
+        <svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 22h20"/><path d="M5 22V10l7-7 7 7v12"/><path d="M10 22v-6h4v6"/></svg>
+        <h3>BTP & Chantiers</h3>
+        <p>Bases vie, sécurisation périmétrique, gardiennage matériel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <span class="t-label">Nos prestations</span>
+        <h2 class="t-title" style="margin-top:1rem">Cinq services<br>de sécurité privée.</h2>
+      </div>
+      <p class="t-body" style="max-width:380px">Surveillance, sécurité incendie, événementiel, mobile, cynophile. Une réponse adaptée à chaque site, chaque risque, chaque budget.</p>
+    </div>
+    <div class="services-grid">
+
+      <article class="service reveal">
+        <img src="images/service-01-surveillance.jpg" alt="Surveillance et gardiennage FKH - Agents en PC sécurité" class="service-img" loading="lazy">
+        <div class="service-num">01</div>
+        <span class="service-tag">Sécurité statique</span>
+        <h3>Surveillance & Gardiennage</h3>
+        <p>Sites industriels, tertiaires, logistiques. Vos locaux laissés vides la nuit ou le week-end : c'est exactement le moment des intrusions. Nos agents CQP APS, équipés d'un logiciel de rondes horodatées GPS, vous remettent un rapport quotidien.</p>
+        <a href="#contact" class="service-link">Demander un devis <span class="btn-arrow"></span></a>
+      </article>
+
+      <article class="service reveal">
+        <img src="images/service-02-ssiap-extincteur.webp" alt="Agent SSIAP FKH vérifiant un extincteur en ERP" class="service-img" loading="lazy">
+        <div class="service-num">02</div>
+        <span class="service-tag">Sécurité incendie</span>
+        <h3>Agent SSIAP 1 & 2</h3>
+        <p>Sécurité incendie en ERP et IGH. Prévention, vérification quotidienne des moyens de secours, formation du personnel à l'évacuation. Agents diplômés SSIAP 1 (équipiers) et SSIAP 2 (chefs d'équipe).</p>
+        <a href="#contact" class="service-link">Demander un devis <span class="btn-arrow"></span></a>
+      </article>
+
+      <article class="service reveal">
+        <img src="images/service-03-evenementiel.webp" alt="Sécurité événementielle FKH - Filtrage et contrôle d'accès" class="service-img" loading="lazy">
+        <div class="service-num">03</div>
+        <span class="service-tag">Événementiel</span>
+        <h3>Sécurité Événementielle</h3>
+        <p>Filtrage, gestion de foule, palpation de sécurité, sécurisation périmétrique. Concerts, salons professionnels, manifestations sportives, mariages haut de gamme. Article L.613-3 CSI strictement appliqué.</p>
+        <a href="#contact" class="service-link">Demander un devis <span class="btn-arrow"></span></a>
+      </article>
+
+      <article class="service reveal">
+        <img src="images/service-04-mobile.jpg" alt="Sécurité mobile FKH - Patrouilles véhiculées multi-sites" class="service-img" loading="lazy">
+        <div class="service-num">04</div>
+        <span class="service-tag">Intervention mobile</span>
+        <h3>Sécurité Mobile</h3>
+        <p>Patrouilles véhiculées multi-sites, levée de doute sur alarme, rondes nocturnes. Véhicules identifiés, agents formés à l'intervention rapide. Couverture programmée ou ponctuelle.</p>
+        <a href="#contact" class="service-link">Demander un devis <span class="btn-arrow"></span></a>
+      </article>
+
+      <article class="service reveal">
+        <img src="images/service-05-cynophile.webp" alt="Surveillance cynophile FKH - Maître-chien et berger allemand" class="service-img" loading="lazy">
+        <div class="service-num">05</div>
+        <span class="service-tag">Cynophile</span>
+        <h3>Surveillance Cynophile</h3>
+        <p>Un site clos peut être violé en 90 secondes. Avec un berger allemand visible : presque jamais. Maîtres-chiens diplômés, bergers allemands ou malinois certifiés. Conformité totale aux articles L.613-7 à L.613-9 du CSI.</p>
+        <a href="#contact" class="service-link">Demander un devis <span class="btn-arrow"></span></a>
+      </article>
+
+      <article class="service reveal" style="background:linear-gradient(135deg,rgba(216,92,46,.08),transparent);border-color:rgba(216,92,46,.3)">
+        <div class="service-num">+</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 5 V19 M5 12 H19"/></svg>
+        <span class="service-tag" style="color:var(--text)">Sur-mesure</span>
+        <h3>Une mission spécifique ?</h3>
+        <p>Audit de site, mission ponctuelle, sécurité VIP, dispositif sur-mesure. Décrivez votre besoin, nous vous transmettons une réponse adaptée sous 2 heures.</p>
+        <a href="#contact" class="service-link" style="color:var(--accent)">Décrire ma mission <span class="btn-arrow"></span></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <span class="t-label">Pourquoi nous</span>
+      <h2 class="t-title" style="margin-top:1.5rem">Six raisons vérifiables.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-card-num">— 01</span>
+        <h3>Agréments CNAPS visibles</h3>
+        <p>Vérifiables sur cnaps.interieur.gouv.fr. Cartes professionnelles fournies sur simple demande (article L.612-15 du CSI).</p>
+        <span class="cnaps-num">AUT-021-2123-11-08-20240796361</span>
+        <span class="cnaps-num">AGD-093-2028-08-29-20230440794</span>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-num">— 02</span>
+        <h3>Devis sous 2 heures</h3>
+        <p>Réponse rapide en heures ouvrées. Si nous mettons plus, vous obtenez 10% sur la prestation. Engagement écrit.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-num">— 03</span>
+        <h3>Couverture France métropolitaine</h3>
+        <p>Intervention partout sur le territoire métropolitain. Réseau d'agents qualifiés, mobilisation rapide.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-num">— 04</span>
+        <h3>Conformité IDCC 1351</h3>
+        <p>Convention collective sécurité privée appliquée intégralement. Bulletins de paie conformes, attestations URSSAF transmises tous les 6 mois (art. L.8222-1 CT).</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-num">— 05</span>
+        <h3>Cinq ans d'expérience</h3>
+        <p>Société créée en 2020, RCS PARIS. Dirigeant agréé CNAPS depuis l'origine. Structure stable, engagement durable.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-card-num">— 06</span>
+        <h3>Disponibilité 24h/24 — 7j/7</h3>
+        <p>Astreinte permanente. Un dirigeant joignable. Pas un standard externalisé. Numéro direct communiqué aux clients sous contrat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="engagements">
+  <div class="container">
+    <div class="engagements-header reveal">
+      <span class="t-label">Nos engagements</span>
+      <h2 class="t-title" style="margin-top:1.2rem">Ce que nous écrivons,<br>ce que nous tenons.</h2>
+    </div>
+    <div class="engagement-list">
+      <div class="engagement-item reveal">
+        <span class="engagement-num">01.</span>
+        <div class="engagement-text">
+          <strong>Devis sous 2h en heures ouvrées.</strong>
+          <p>Si nous mettons plus, vous obtenez 10% sur la prestation. Engagement écrit dès la première mission.</p>
+        </div>
+      </div>
+      <div class="engagement-item reveal">
+        <span class="engagement-num">02.</span>
+        <div class="engagement-text">
+          <strong>Agents 100% CNAPS-actifs.</strong>
+          <p>Chaque carte professionnelle est vérifiable sur cnaps.interieur.gouv.fr. Numéros communiqués sur demande (L.612-15 CSI).</p>
+        </div>
+      </div>
+      <div class="engagement-item reveal">
+        <span class="engagement-num">03.</span>
+        <div class="engagement-text">
+          <strong>Bulletins de paie conformes IDCC 1351.</strong>
+          <p>Nous vous transmettons les attestations URSSAF et de régularité fiscale tous les 6 mois (article L.8222-1 du Code du travail).</p>
+        </div>
+      </div>
+      <div class="engagement-item reveal">
+        <span class="engagement-num">04.</span>
+        <div class="engagement-text">
+          <strong>Astreinte 24/7, dirigeant joignable.</strong>
+          <p>Pas de standard externalisé. Le numéro direct du dirigeant est communiqué aux clients sous contrat actif.</p>
+        </div>
+      </div>
+      <div class="engagement-item reveal">
+        <span class="engagement-num">05.</span>
+        <div class="engagement-text">
+          <strong>Confidentialité absolue.</strong>
+          <p>Aucune référence client publiée sans accord écrit préalable. Clauses de confidentialité contractuelles à toutes les missions.</p>
+        </div>
+      </div>
+      <div class="engagement-item reveal">
+        <span class="engagement-num">06.</span>
+        <div class="engagement-text">
+          <strong>Reporting mensuel inclus.</strong>
+          <p>Vous savez où, quand, qui — sans rien demander. Logiciel de rondes horodatées GPS, mains courantes archivées.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers" id="careers">
+  <div class="container">
+    <div class="careers-inner reveal">
+      <img src="images/careers-recrutement.webp" alt="Recrutement FKH Sécurité - Entretien manager et candidat" class="careers-img" loading="lazy">
+      <span class="t-label">Carrières</span>
+      <h2 class="t-title" style="margin-top:1rem">Rejoignez FKH Sécurité.</h2>
+      <p>Vous êtes titulaire d'une carte professionnelle CNAPS valide ? Envoyez votre candidature à recrutement@fkhsecurite.com. Postes en CDI et CDD, partout en France métropolitaine. Conditions IDCC 1351 strictement appliquées.</p>
+      <a href="mailto:recrutement@fkhsecurite.com" class="btn btn-primary">Postuler maintenant <span class="btn-arrow"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <span class="t-label">Contact</span>
+        <h2 class="t-title">Un site à protéger ?<br>Un devis sous 2h.</h2>
+        <p class="t-body">Décrivez votre besoin en quelques lignes. Nous vous répondons en heures ouvrées sous 2 heures, week-ends et urgences sous 6h.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.92V20a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3.08a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <span class="contact-info-label">Téléphone</span>
+              <span class="contact-info-value"><a href="tel:0465842584">04 65 84 25 84</a></span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <span class="contact-info-label">Email</span>
+              <span class="contact-info-value"><a href="mailto:contact@fkhsecurite.com">contact@fkhsecurite.com</a></span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <span class="contact-info-label">Siège social</span>
+              <span class="contact-info-value">200 rue de la Croix Nivert<br>75015 Paris</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form reveal" name="contact-fkh" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-fkh">
+        <p style="display:none"><label>N'écrivez rien ici : <input name="bot-field"></label></p>
+        <h3>Demande de devis</h3>
+        <p class="form-intro">Tous les champs marqués * sont obligatoires.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="nom">Nom complet *</label>
+            <input type="text" id="nom" name="nom" required>
+          </div>
+          <div class="form-field">
+            <label for="societe">Société</label>
+            <input type="text" id="societe" name="societe">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-field">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="prestation">Type de prestation *</label>
+          <select id="prestation" name="prestation" required>
+            <option value="">— Sélectionner —</option>
+            <option>Surveillance & Gardiennage</option>
+            <option>Agent SSIAP 1 & 2</option>
+            <option>Sécurité Événementielle</option>
+            <option>Sécurité Mobile</option>
+            <option>Surveillance Cynophile</option>
+            <option>Mission sur-mesure</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Décrivez votre besoin *</label>
+          <textarea id="message" name="message" required placeholder="Type de site (industriel, ERP, événement…), localisation, période souhaitée, volume estimé d'heures…"></textarea>
+        </div>
+
+        <label class="form-rgpd">
+          <input type="checkbox" name="rgpd" required>
+          J'accepte que mes données soient traitées par FKH Sécurité dans le cadre de ma demande de devis. <a href="#legal-rgpd">Politique de confidentialité</a>
+        </label>
+
+        <button type="submit" class="btn btn-primary">Envoyer ma demande <span class="btn-arrow"></span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BANDEAU AMBIANCE PARIS -->
+<img src="images/ambiance-footer.jpg" alt="Paris la nuit - FKH Sécurité veille sur vous" class="footer-ambiance" loading="lazy">
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="footer-brand-link" aria-label="FKH Sécurité"><img src="data:image/png;base64,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" alt="FKH Sécurité" class="footer-logo-img"/></a>
+        <p>Société de sécurité privée agréée CNAPS depuis 2020. Surveillance, gardiennage, événementiel, cynophile, mobile partout en France métropolitaine.</p>
+        <span class="footer-cnaps">AUT-021-2123-11-08-20240796361</span>
+        <span class="footer-cnaps">AGD-093-2028-08-29-20230440794</span>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Surveillance & Gardiennage</a></li>
+          <li><a href="#services">Agent SSIAP 1 & 2</a></li>
+          <li><a href="#services">Sécurité Événementielle</a></li>
+          <li><a href="#services">Sécurité Mobile</a></li>
+          <li><a href="#services">Surveillance Cynophile</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Société</h4>
+        <ul>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#why">Pourquoi nous</a></li>
+          <li><a href="#careers">Carrières</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>200 rue de la Croix Nivert<br>75015 Paris</li>
+          <li><a href="tel:0465842584">04 65 84 25 84</a></li>
+          <li><a href="mailto:contact@fkhsecurite.com">contact@fkhsecurite.com</a></li>
+          <li><a href="mailto:recrutement@fkhsecurite.com">recrutement@fkhsecurite.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MENTIONS LÉGALES OBLIGATOIRES SÉCURITÉ PRIVÉE -->
+    <div class="footer-legal-mention">
+      <strong>Mention obligatoire — Article L.612-14 du CSI</strong>
+      L'autorisation d'exercice ne confère aucune prérogative de puissance publique à l'entreprise ou aux personnes qui en bénéficient. Activité réglementée par le Livre VI du Code de la sécurité intérieure et la loi n°83-629 du 12 juillet 1983 modifiée. Les références des cartes professionnelles des agents intervenant sur prestation sont communiquées sans délai sur simple demande (article L.612-15 du CSI).
+    </div>
+
+    <div class="footer-legal">
+      <div class="footer-legal-grid">
+        <div>
+          <strong style="color:#fff;display:block;margin-bottom:.5rem">Identification de la société</strong>
+          FKH Sécurité — SASU<br>
+          SIREN : 888 853 819 — RCS PARIS<br>
+          TVA intracommunautaire : FR41 888 853 819<br>
+          Code APE : 8010Z<br>
+          Siège : 200 rue de la Croix Nivert, 75015 Paris<br>
+          Directeur de la publication : Moussa Diane
+        </div>
+        <div>
+          <strong style="color:#fff;display:block;margin-bottom:.5rem">Hébergement & conformité</strong>
+          Hébergeur : Netlify Inc.<br>
+          610 22nd Street, Suite 315<br>
+          San Francisco, CA 94107, USA<br><br>
+          Convention collective : IDCC 1351 (Sécurité privée)<br>
+          Application stricte du décret n°2012-870 (déontologie)
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 FKH Sécurité. Tous droits réservés.</div>
+      <div>
+        <a href="#legal">Mentions légales</a> ·
+        <a href="#legal-rgpd">RGPD</a> ·
+        <a href="#legal-cgv">CGV</a> ·
+        <a href="#legal-cookies">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
+// Mobile menu
+const burger=document.getElementById('navBurger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('active');links.classList.toggle('open');});
+links.addEventListener('click',e=>{if(e.target.tagName==='A'){burger.classList.remove('active');links.classList.remove('open');}});
+// Reveal on scroll
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
